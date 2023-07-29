@@ -4,6 +4,14 @@ plugins {
     `maven-publish`
 }
 
+group = "dev.retrotv"
+version = "0.1.0-alpha"
+
+// Github Action 버전 출력용
+tasks.register("printVersionName") {
+    println(project.version)
+}
+
 repositories {
     mavenCentral()
 }
@@ -25,9 +33,9 @@ tasks {
 publishing {
     publications {
         create<MavenPublication>("maven") {
-            groupId = "dev.retrotv"
+            groupId = project.group.toString()
             artifactId = "data-utils"
-            version = "0.0.1-alpha"
+            version = project.version.toString()
 
             from(components["java"])
         }
