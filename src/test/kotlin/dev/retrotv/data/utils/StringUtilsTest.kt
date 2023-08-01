@@ -4,6 +4,7 @@ import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
 
 import org.junit.jupiter.api.Assertions.*
+import java.math.RoundingMode
 import java.util.*
 
 class StringUtilsTest {
@@ -65,5 +66,35 @@ class StringUtilsTest {
     fun test_masking_method() {
         val returnValue = masking("123456-1234567", '#', 8, 13)
         assertEquals("123456-1######", returnValue)
+    }
+
+    @Test
+    @DisplayName("decimalToString(?, ?) 메소드 테스트")
+    fun test_decimalToString_two_parameter_method() {
+        var returnValue = deciamlToString((1.0/3.0), "#.##")
+        assertEquals("0.33", returnValue)
+
+        returnValue = deciamlToString((5.0/3.0).toDouble(), "#.##")
+        assertEquals("1.67", returnValue)
+    }
+
+    @Test
+    @DisplayName("decimalToString(?, ?, ?) 메소드 테스트")
+    fun test_decimalToString_three_parameter_method() {
+        var returnValue = deciamlToString((1.0/3.0), "#.##", RoundingMode.UP)
+        assertEquals("0.34", returnValue)
+
+        returnValue = deciamlToString((5.0/3.0).toDouble(), "#.##", RoundingMode.DOWN)
+        assertEquals("1.66", returnValue)
+    }
+
+    @Test
+    @DisplayName("intToString 메소드 테스트")
+    fun test_intToString_method() {
+        var returnValue = intToString(1000000, "#,###")
+        assertEquals("1,000,000", returnValue)
+
+        returnValue = intToString(1000000, "#,###.00")
+        assertEquals("1,000,000.00", returnValue)
     }
 }

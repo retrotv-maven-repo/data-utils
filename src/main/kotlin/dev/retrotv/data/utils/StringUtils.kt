@@ -2,6 +2,8 @@
 package dev.retrotv.data.utils
 
 import java.lang.IllegalArgumentException
+import java.math.RoundingMode
+import java.text.DecimalFormat
 
 /**
  * <pre>
@@ -124,4 +126,51 @@ fun masking(value: String,
     }
 
     return String(arr)
+}
+
+/**
+ * <pre>
+ * Double 값을 지정된 포맷의 String 값으로 변환하고 반환합니다.
+ * </pre>
+ *
+ * @param value 변환할 Double 값
+ * @param format 포맷
+ * @return 지정된 포맷으로 변환된 String 값
+ */
+fun deciamlToString(value: Double, format: String): String {
+    val df = DecimalFormat(format)
+    df.roundingMode = RoundingMode.HALF_UP
+    return df.format(value)
+}
+
+/**
+ * <pre>
+ * Double 값을 지정된 포맷의 String 값으로 변환하고 반환합니다.
+ * Rounding 모드를 추가로 지정할 수 있습니다. (EX. 올림, 버림, 반올림 등...)
+ * Rounding 모드는 [RoundingMode] enum을 참조하십시오.
+ * </pre>
+ *
+ * @param value 변환할 Double 값
+ * @param format 포맷
+ * @param mode [RoundingMode] enum 참조
+ * @return 지정된 포맷으로 변환된 String 값
+ */
+fun deciamlToString(value: Double, format: String, mode: RoundingMode): String {
+    val df = DecimalFormat(format)
+    df.roundingMode = mode
+    return df.format(value)
+}
+
+/**
+ * <pre>
+ * Int 값을 지정된 포맷의 String 값으로 변환하고 반환합니다.
+ * </pre>
+ *
+ * @param value 변환할 Int 값
+ * @param format 포맷
+ * @return 지정된 포맷으로 변환된 String 값
+ */
+fun intToString(value: Int, format: String): String {
+    val df = DecimalFormat(format)
+    return df.format(value)
 }
