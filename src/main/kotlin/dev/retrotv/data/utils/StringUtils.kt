@@ -174,3 +174,8 @@ fun intToString(value: Int, format: String): String {
     val df = DecimalFormat(format)
     return df.format(value)
 }
+
+fun isIncludeKorean(value: String): Boolean {
+    val re = Regex(".*[ㄱ-ㅎㅏ-ㅣ가-힣]+.*")
+    return value.matches(re);
+}

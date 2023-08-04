@@ -97,4 +97,14 @@ class StringUtilsTest {
         returnValue = intToString(1000000, "#,###.00")
         assertEquals("1,000,000.00", returnValue)
     }
+
+    @Test
+    @DisplayName("isIncludeKorean 메소드 테스트")
+    fun test_isIncludeKorean_method() {
+        var returnValue = isIncludeKorean("가b12312나123354aslkwnee")
+        assertTrue(returnValue)
+
+        returnValue = isIncludeKorean("qwodnosfmlq2102983eomerhmdlfbs")
+        assertFalse(returnValue)
+    }
 }
