@@ -196,7 +196,7 @@ fun isEmail(value: String): Boolean {
  * @param value 확인할 값
  * @return 유선 전화번호 형식 여부
  */
-fun isHomePhone(value: String): Boolean {
+fun isHomePhoneNumber(value: String): Boolean {
 
     // 서울
     return if (value.substring(0 until 2) == "02") {
@@ -230,7 +230,7 @@ fun isHomePhone(value: String): Boolean {
  * @param value 확인할 값
  * @return 휴대 전화번호 형식 여부
  */
-fun isCellPhone(value: String): Boolean {
+fun isCellPhoneNumber(value: String): Boolean {
     val re = Regex("^01([016789])([-)])?\\d{3,4}-?\\d{4}\$")
     return re.matches(value)
 }
@@ -243,8 +243,8 @@ fun isCellPhone(value: String): Boolean {
  * @param value 확인할 값
  * @return 유선/휴대 전화번호 형식 여부
  */
-fun isPhone(value: String): Boolean {
-    val result1 = isHomePhone(value)
-    val result2 = isCellPhone(value)
+fun isPhoneNumber(value: String): Boolean {
+    val result1 = isHomePhoneNumber(value)
+    val result2 = isCellPhoneNumber(value)
     return result1 || result2;
 }

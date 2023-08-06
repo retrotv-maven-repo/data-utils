@@ -74,7 +74,7 @@ class StringUtilsTest {
         var returnValue = deciamlToString((1.0/3.0), "#.##")
         assertEquals("0.33", returnValue)
 
-        returnValue = deciamlToString((5.0/3.0).toDouble(), "#.##")
+        returnValue = deciamlToString((5.0/3.0), "#.##")
         assertEquals("1.67", returnValue)
     }
 
@@ -84,7 +84,7 @@ class StringUtilsTest {
         var returnValue = deciamlToString((1.0/3.0), "#.##", RoundingMode.UP)
         assertEquals("0.34", returnValue)
 
-        returnValue = deciamlToString((5.0/3.0).toDouble(), "#.##", RoundingMode.DOWN)
+        returnValue = deciamlToString((5.0/3.0), "#.##", RoundingMode.DOWN)
         assertEquals("1.66", returnValue)
     }
 
@@ -219,7 +219,7 @@ class StringUtilsTest {
             "06400000000",
         )
 
-        list.forEach { number -> assertTrue(isPhone(number)) }
+        list.forEach { number -> assertTrue(isPhoneNumber(number)) }
 
         list = arrayOf(
             "01-000-0000",
@@ -258,7 +258,7 @@ class StringUtilsTest {
             "050-0000-0000",
         )
 
-        list.forEach { number -> assertFalse(isPhone(number)) }
+        list.forEach { number -> assertFalse(isPhoneNumber(number)) }
 
         list = arrayOf(
             "010-0000-0000",
@@ -288,7 +288,7 @@ class StringUtilsTest {
         )
 
         list.forEach { number ->
-            assertTrue(isPhone(number))
+            assertTrue(isPhoneNumber(number))
         }
 
         list = arrayOf(
@@ -311,7 +311,7 @@ class StringUtilsTest {
         )
 
         list.forEach { number ->
-            assertFalse(isPhone(number))
+            assertFalse(isPhoneNumber(number))
         }
     }
 
@@ -423,7 +423,7 @@ class StringUtilsTest {
             "06400000000",
         )
 
-        list.forEach { number -> assertTrue(isHomePhone(number)) }
+        list.forEach { number -> assertTrue(isHomePhoneNumber(number)) }
 
         list = arrayOf(
             "01-000-0000",
@@ -462,7 +462,7 @@ class StringUtilsTest {
             "050-0000-0000",
         )
 
-        list.forEach { number -> assertFalse(isHomePhone(number)) }
+        list.forEach { number -> assertFalse(isHomePhoneNumber(number)) }
     }
 
     @Test
@@ -496,7 +496,7 @@ class StringUtilsTest {
         )
 
         list.forEach { number ->
-            assertTrue(isCellPhone(number))
+            assertTrue(isCellPhoneNumber(number))
         }
 
         list = arrayOf(
@@ -519,7 +519,7 @@ class StringUtilsTest {
         )
 
         list.forEach { number ->
-            assertFalse(isCellPhone(number))
+            assertFalse(isCellPhoneNumber(number))
         }
     }
 }
