@@ -123,20 +123,20 @@ class StringUtilsTest {
     @Test
     @DisplayName("isIncludeLowerCaseEnglish 메소드 테스트")
     fun test_isIncludeLowerCaseEnglish_method() {
-        var returnValue = isIncludeLowerCaseEnglish("12가31b2나123354aslkwne1")
+        var returnValue = isIncludeLowerCase("12가31b2나123354aslkwne1")
         assertTrue(returnValue)
 
-        returnValue = isIncludeLowerCaseEnglish("가나다라11230345!@#!ASSDBWER@$")
+        returnValue = isIncludeLowerCase("가나다라11230345!@#!ASSDBWER@$")
         assertFalse(returnValue)
     }
 
     @Test
     @DisplayName("isIncludeUpperCaseEnglish 메소드 테스트")
     fun test_isIncludeUpperCaseEnglish_method() {
-        var returnValue = isIncludeUpperCaseEnglish("12가31B2나123354ASDQEFG1")
+        var returnValue = isIncludeUpperCase("12가31B2나123354ASDQEFG1")
         assertTrue(returnValue)
 
-        returnValue = isIncludeUpperCaseEnglish("가asd나다라112303fdb45!@#d!@$")
+        returnValue = isIncludeUpperCase("가asd나다라112303fdb45!@#d!@$")
         assertFalse(returnValue)
     }
 
