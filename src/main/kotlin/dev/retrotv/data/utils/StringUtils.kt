@@ -180,12 +180,12 @@ fun isIncludeEnglish(value: String): Boolean {
     return value.matches(re)
 }
 
-fun isIncludeLowerCaseEnglish(value: String): Boolean {
+fun isIncludeLowerCase(value: String): Boolean {
     val re = Regex(".*[a-z]+.*")
     return value.matches(re)
 }
 
-fun isIncludeUpperCaseEnglish(value: String): Boolean {
+fun isIncludeUpperCase(value: String): Boolean {
     val re = Regex(".*[A-Z]+.*")
     return value.matches(re)
 }
