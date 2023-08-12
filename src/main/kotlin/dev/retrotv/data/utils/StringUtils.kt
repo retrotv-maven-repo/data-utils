@@ -175,6 +175,31 @@ fun intToString(value: Int, format: String): String {
     return df.format(value)
 }
 
+fun isIncludeEnglish(value: String): Boolean {
+    val re = Regex(".*[a-zA-Z]+.*")
+    return value.matches(re)
+}
+
+fun isIncludeLowerCaseEnglish(value: String): Boolean {
+    val re = Regex(".*[a-z]+.*")
+    return value.matches(re)
+}
+
+fun isIncludeUpperCaseEnglish(value: String): Boolean {
+    val re = Regex(".*[A-Z]+.*")
+    return value.matches(re)
+}
+
+fun isIncludeSpecialCharacter(value: String): Boolean {
+    val re = Regex(".*[^a-zA-Z0-9ㄱ-ㅎㅏ-ㅣ가-힣\\s]+.*")
+    return value.matches(re)
+}
+
+fun isIncludeKorean(value: String): Boolean {
+    val re = Regex(".*[ㄱ-ㅎㅏ-ㅣ가-힣]+.*")
+    return value.matches(re)
+}
+
 /**
  * <pre>
  * 이메일 형식인지 확인합니다.
@@ -246,5 +271,5 @@ fun isCellPhoneNumber(value: String): Boolean {
 fun isPhoneNumber(value: String): Boolean {
     val result1 = isHomePhoneNumber(value)
     val result2 = isCellPhoneNumber(value)
-    return result1 || result2;
+    return result1 || result2
 }

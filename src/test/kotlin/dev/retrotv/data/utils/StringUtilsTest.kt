@@ -99,6 +99,15 @@ class StringUtilsTest {
     }
 
     @Test
+    @DisplayName("isIncludeEnglish 메소드 테스트")
+    fun test_isIncludeEnglish_method() {
+        var returnValue = isIncludeEnglish("12가31b2나123354aslkwne1")
+        assertTrue(returnValue)
+
+        returnValue = isIncludeEnglish("가나다라11230345!@#!@$")
+        assertFalse(returnValue)
+    }
+
     @DisplayName("isEmail 메소드 테스트")
     fun test_isEmail_method() {
         var returnValue = isEmail("aaaaaaa@naver.com")
@@ -108,6 +117,46 @@ class StringUtilsTest {
         assertFalse(returnValue)
 
         returnValue = isEmail("qwsidmpawomqpwoqpwd")
+        assertFalse(returnValue)
+    }
+
+    @Test
+    @DisplayName("isIncludeLowerCaseEnglish 메소드 테스트")
+    fun test_isIncludeLowerCaseEnglish_method() {
+        var returnValue = isIncludeLowerCaseEnglish("12가31b2나123354aslkwne1")
+        assertTrue(returnValue)
+
+        returnValue = isIncludeLowerCaseEnglish("가나다라11230345!@#!ASSDBWER@$")
+        assertFalse(returnValue)
+    }
+
+    @Test
+    @DisplayName("isIncludeUpperCaseEnglish 메소드 테스트")
+    fun test_isIncludeUpperCaseEnglish_method() {
+        var returnValue = isIncludeUpperCaseEnglish("12가31B2나123354ASDQEFG1")
+        assertTrue(returnValue)
+
+        returnValue = isIncludeUpperCaseEnglish("가asd나다라112303fdb45!@#d!@$")
+        assertFalse(returnValue)
+    }
+
+    @Test
+    @DisplayName("isIncludeSpecialCharacter 메소드 테스트")
+    fun test_isIncludeSpecialCharacter_method() {
+        var returnValue = isIncludeSpecialCharacter("12가31b2!@#!나1233545asl&*)kwne1")
+        assertTrue(returnValue)
+
+        returnValue = isIncludeSpecialCharacter("가나다라11230345aslqASDQW")
+        assertFalse(returnValue)
+    }
+
+    @Test
+    @DisplayName("isIncludeKorean 메소드 테스트")
+    fun test_isIncludeKorean_method() {
+        var returnValue = isIncludeKorean("b12가312나123354aslkwn!@#ee")
+        assertTrue(returnValue)
+
+        returnValue = isIncludeKorean("qwodnosfmlq2102983eome!@#rhmdlfbs")
         assertFalse(returnValue)
     }
 
