@@ -121,8 +121,8 @@ class StringUtilsTest {
     }
 
     @Test
-    @DisplayName("isIncludeLowerCaseEnglish 메소드 테스트")
-    fun test_isIncludeLowerCaseEnglish_method() {
+    @DisplayName("isIncludeLowerCase 메소드 테스트")
+    fun test_isIncludeLowerCase_method() {
         var returnValue = isIncludeLowerCase("12가31b2나123354aslkwne1")
         assertTrue(returnValue)
 
@@ -131,12 +131,22 @@ class StringUtilsTest {
     }
 
     @Test
-    @DisplayName("isIncludeUpperCaseEnglish 메소드 테스트")
-    fun test_isIncludeUpperCaseEnglish_method() {
+    @DisplayName("isIncludeUpperCase 메소드 테스트")
+    fun test_isIncludeUpperCase_method() {
         var returnValue = isIncludeUpperCase("12가31B2나123354ASDQEFG1")
         assertTrue(returnValue)
 
         returnValue = isIncludeUpperCase("가asd나다라112303fdb45!@#d!@$")
+        assertFalse(returnValue)
+    }
+
+    @Test
+    @DisplayName("isIncludeNumber 메소드 테스트")
+    fun test_isIncludeNumber_method() {
+        var returnValue = isIncludeNumber("가31B2나123354ASDQEFG")
+        assertTrue(returnValue)
+
+        returnValue = isIncludeNumber("qwd가나다르바!@#d!@$")
         assertFalse(returnValue)
     }
 
