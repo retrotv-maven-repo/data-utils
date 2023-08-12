@@ -190,6 +190,11 @@ fun isIncludeUpperCase(value: String): Boolean {
     return value.matches(re)
 }
 
+fun isIncludeNumber(value: String): Boolean {
+    val re = Regex(".*[0-9]+.*")
+    return value.matches(re)
+}
+
 fun isIncludeSpecialCharacter(value: String): Boolean {
     val re = Regex(".*[^a-zA-Z0-9ㄱ-ㅎㅏ-ㅣ가-힣\\s]+.*")
     return value.matches(re)
