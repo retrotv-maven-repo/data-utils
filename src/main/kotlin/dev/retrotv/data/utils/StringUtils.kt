@@ -180,7 +180,7 @@ fun intToString(value: Int, format: String): String {
  * 영문자 포함 여부를 반환합니다.
  * </pre>
  *
- * @param value 확인할 문자열
+ * @param value 검증할 문자열
  * @return 영문자 포함 여부
  */
 fun isIncludeEnglish(value: String): Boolean {
@@ -193,7 +193,7 @@ fun isIncludeEnglish(value: String): Boolean {
  * 영소문자 포함 여부를 반환합니다.
  * </pre>
  *
- * @param value 확인할 문자열
+ * @param value 검증할 문자열
  * @return 영소문자 포함 여부
  */
 fun isIncludeLowerCase(value: String): Boolean {
@@ -206,7 +206,7 @@ fun isIncludeLowerCase(value: String): Boolean {
  * 영대문자 포함 여부를 반환합니다.
  * </pre>
  *
- * @param value 확인할 문자열
+ * @param value 검증할 문자열
  * @return 영대문자 포함 여부
  */
 fun isIncludeUpperCase(value: String): Boolean {
@@ -219,7 +219,7 @@ fun isIncludeUpperCase(value: String): Boolean {
  * 숫자 포함 여부를 반환합니다.
  * </pre>
  *
- * @param value 확인할 문자열
+ * @param value 검증할 문자열
  * @return 숫자 포함 여부
  */
 fun isIncludeNumber(value: String): Boolean {
@@ -232,7 +232,7 @@ fun isIncludeNumber(value: String): Boolean {
  * 특수문자 포함 여부를 반환합니다.
  * </pre>
  *
- * @param value 확인할 문자열
+ * @param value 검증할 문자열
  * @return 특수문자 포함 여부
  */
 fun isIncludeSpecialCharacter(value: String): Boolean {
@@ -245,7 +245,7 @@ fun isIncludeSpecialCharacter(value: String): Boolean {
  * 한글 포함 여부를 반환합니다.
  * </pre>
  *
- * @param value 확인할 문자열
+ * @param value 검증할 문자열
  * @return 한글 포함 여부
  */
 fun isIncludeKorean(value: String): Boolean {
@@ -258,7 +258,7 @@ fun isIncludeKorean(value: String): Boolean {
  * 이메일 형식인지 확인합니다.
  * </pre>
  *
- * @param value 확인할 문자열
+ * @param value 검증할 문자열
  * @return 이메일 형식 여부
  */
 fun isEmail(value: String): Boolean {
@@ -271,7 +271,7 @@ fun isEmail(value: String): Boolean {
  * 유선 전화번호 형식인지 확인합니다.
  * </pre>
  *
- * @param value 확인할 문자열
+ * @param value 검증할 문자열
  * @return 유선 전화번호 형식 여부
  */
 fun isHomePhoneNumber(value: String): Boolean {
@@ -305,7 +305,7 @@ fun isHomePhoneNumber(value: String): Boolean {
  * 휴대 전화번호 형식인지 확인합니다.
  * </pre>
  *
- * @param value 확인할 문자열
+ * @param value 검증할 문자열
  * @return 휴대 전화번호 형식 여부
  */
 fun isCellPhoneNumber(value: String): Boolean {
@@ -318,7 +318,7 @@ fun isCellPhoneNumber(value: String): Boolean {
  * 유선 전화번호 형식 혹은 휴대 전화번호 형식인지 확인합니다.
  * </pre>
  *
- * @param value 확인할 문자열
+ * @param value 검증할 문자열
  * @return 유선/휴대 전화번호 형식 여부
  */
 fun isPhoneNumber(value: String): Boolean {
