@@ -1,6 +1,7 @@
 @file:JvmName("StringUtils")
 package dev.retrotv.data.utils
 
+import dev.retrotv.data.enums.OperatingSystem
 import java.lang.IllegalArgumentException
 import java.math.RoundingMode
 import java.text.DecimalFormat
@@ -17,6 +18,24 @@ import java.text.DecimalFormat
 fun addNewLine(value: String): String {
     val os = System.getProperty("os.name").lowercase()
     return if (os.contains("win")) {
+        value + "\r\n"
+    } else {
+        value + "\n"
+    }
+}
+
+/**
+ * <pre>
+ * 문자열 끝에 개행문자를 추가하고 반환합니다.
+ * targetOS에 맞춰 적절한 개행문자를 문자열 끝에 추가합니다.
+ * </pre>
+ *
+ * @param value 개행문자를 추가할 문자열
+ * @param targetOS
+ * @return 개행문자가 추가된 문자열
+ */
+fun addNewLine(value: String, targetOS: OperatingSystem): String {
+    return if (targetOS == OperatingSystem.WINDOWS) {
         value + "\r\n"
     } else {
         value + "\n"
