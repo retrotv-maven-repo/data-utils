@@ -31,7 +31,7 @@ fun addNewLine(value: String): String {
  * </pre>
  *
  * @param value 개행문자를 추가할 문자열
- * @param targetOS
+ * @param targetOS 추가될 문자열을 결정할 운영체제 정보
  * @return 개행문자가 추가된 문자열
  */
 fun addNewLine(value: String, targetOS: OperatingSystem): String {
