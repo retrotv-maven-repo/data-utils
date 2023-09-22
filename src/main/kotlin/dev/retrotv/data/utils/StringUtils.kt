@@ -1,6 +1,7 @@
 @file:JvmName("StringUtils")
 package dev.retrotv.data.utils
 
+import dev.retrotv.data.enums.OperatingSystem
 import java.lang.IllegalArgumentException
 import java.math.RoundingMode
 import java.text.DecimalFormat
@@ -25,8 +26,24 @@ fun addNewLine(value: String): String {
 
 /**
  * <pre>
- * 문자열에 포함된 개행문자("\r", "\n")를 모두 제거하고 반환합니다.
+ * 문자열 끝에 개행문자를 추가하고 반환합니다.
+ * targetOS에 맞춰 적절한 개행문자를 문자열 끝에 추가합니다.
  * </pre>
+ *
+ * @param value 개행문자를 추가할 문자열
+ * @param targetOS 추가될 문자열을 결정할 운영체제 정보
+ * @return 개행문자가 추가된 문자열
+ */
+fun addNewLine(value: String, targetOS: OperatingSystem): String {
+    return if (targetOS == OperatingSystem.WINDOWS) {
+        value + "\r\n"
+    } else {
+        value + "\n"
+    }
+}
+
+/**
+ * 문자열에 포함된 개행문자("\r", "\n")를 모두 제거하고 반환합니다.
  *
  * @param value 개행문자를 제거할 문자열
  * @return 개행문자가 제거된 문자열
@@ -100,9 +117,7 @@ fun appendAll(vararg values: String, delimiter: String? = null, useDelimiter: Bo
 }
 
 /**
- * <pre>
  * 지정된 지점의 문자열을 지정된 문자로 마스킹하고 반환합니다.
- * </pre>
  *
  * @param value 마스킹 할 문자열
  * @param maskChar 마스킹 문자
@@ -129,9 +144,7 @@ fun masking(value: String,
 }
 
 /**
- * <pre>
  * Double 값을 지정된 포맷의 String 값으로 변환하고 반환합니다.
- * </pre>
  *
  * @param value 변환할 Double 값
  * @param format 포맷
@@ -162,9 +175,7 @@ fun deciamlToString(value: Double, format: String, mode: RoundingMode): String {
 }
 
 /**
- * <pre>
  * Int 값을 지정된 포맷의 String 값으로 변환하고 반환합니다.
- * </pre>
  *
  * @param value 변환할 Int 값
  * @param format 포맷
@@ -175,42 +186,76 @@ fun intToString(value: Int, format: String): String {
     return df.format(value)
 }
 
+/**
+ * 영문자 포함 여부를 반환합니다.
+ *
+ * @param value 검증할 문자열
+ * @return 영문자 포함 여부
+ */
 fun isIncludeEnglish(value: String): Boolean {
     val re = Regex(".*[a-zA-Z]+.*")
     return value.matches(re)
 }
 
+/**
+ * 영소문자 포함 여부를 반환합니다.
+ *
+ * @param value 검증할 문자열
+ * @return 영소문자 포함 여부
+ */
 fun isIncludeLowerCase(value: String): Boolean {
     val re = Regex(".*[a-z]+.*")
     return value.matches(re)
 }
 
+/**
+ * 영대문자 포함 여부를 반환합니다.
+ *
+ * @param value 검증할 문자열
+ * @return 영대문자 포함 여부
+ */
 fun isIncludeUpperCase(value: String): Boolean {
     val re = Regex(".*[A-Z]+.*")
     return value.matches(re)
 }
 
+/**
+ * 숫자 포함 여부를 반환합니다.
+ *
+ * @param value 검증할 문자열
+ * @return 숫자 포함 여부
+ */
 fun isIncludeNumber(value: String): Boolean {
     val re = Regex(".*[0-9]+.*")
     return value.matches(re)
 }
 
+/**
+ * 특수문자 포함 여부를 반환합니다.
+ *
+ * @param value 검증할 문자열
+ * @return 특수문자 포함 여부
+ */
 fun isIncludeSpecialCharacter(value: String): Boolean {
     val re = Regex(".*[^a-zA-Z0-9ㄱ-ㅎㅏ-ㅣ가-힣\\s]+.*")
     return value.matches(re)
 }
 
+/**
+ * 한글 포함 여부를 반환합니다.
+ *
+ * @param value 검증할 문자열
+ * @return 한글 포함 여부
+ */
 fun isIncludeKorean(value: String): Boolean {
     val re = Regex(".*[ㄱ-ㅎㅏ-ㅣ가-힣]+.*")
     return value.matches(re)
 }
 
 /**
- * <pre>
  * 이메일 형식인지 확인합니다.
- * </pre>
  *
- * @param value 확인할 값
+ * @param value 검증할 문자열
  * @return 이메일 형식 여부
  */
 fun isEmail(value: String): Boolean {
@@ -219,11 +264,9 @@ fun isEmail(value: String): Boolean {
 }
 
 /**
- * <pre>
  * 유선 전화번호 형식인지 확인합니다.
- * </pre>
  *
- * @param value 확인할 값
+ * @param value 검증할 문자열
  * @return 유선 전화번호 형식 여부
  */
 fun isHomePhoneNumber(value: String): Boolean {
@@ -253,11 +296,9 @@ fun isHomePhoneNumber(value: String): Boolean {
 }
 
 /**
- * <pre>
  * 휴대 전화번호 형식인지 확인합니다.
- * </pre>
  *
- * @param value 확인할 값
+ * @param value 검증할 문자열
  * @return 휴대 전화번호 형식 여부
  */
 fun isCellPhoneNumber(value: String): Boolean {
@@ -266,11 +307,9 @@ fun isCellPhoneNumber(value: String): Boolean {
 }
 
 /**
- * <pre>
  * 유선 전화번호 형식 혹은 휴대 전화번호 형식인지 확인합니다.
- * </pre>
  *
- * @param value 확인할 값
+ * @param value 검증할 문자열
  * @return 유선/휴대 전화번호 형식 여부
  */
 fun isPhoneNumber(value: String): Boolean {

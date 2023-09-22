@@ -1,5 +1,6 @@
 package dev.retrotv.data.utils
 
+import dev.retrotv.data.enums.OperatingSystem
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
 
@@ -10,8 +11,8 @@ import java.util.*
 class StringUtilsTest {
 
     @Test
-    @DisplayName("addNewLine 메소드 테스트")
-    fun test_addNewLine_method() {
+    @DisplayName("addNewLine(?) 메소드 테스트")
+    fun test_addNewLine_method1() {
         val os = System.getProperty("os.name").lowercase(Locale.getDefault())
         val value = "123456789"
         val returnValue = addNewLine(value)
@@ -21,6 +22,21 @@ class StringUtilsTest {
         } else {
             assertEquals(value + "\n", returnValue)
         }
+    }
+
+    @Test
+    @DisplayName("addNewLine(?, ?) 메소드 테스트")
+    fun test_addNewLine_method2() {
+        var os = OperatingSystem.WINDOWS
+        val value = "123456789"
+        var returnValue = addNewLine(value, os)
+
+        assertEquals(value + "\r\n", returnValue)
+
+        os = OperatingSystem.LINUX
+        returnValue = addNewLine(value, os)
+
+        assertEquals(value + "\n", returnValue)
     }
 
     @Test
