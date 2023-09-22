@@ -6,7 +6,7 @@ plugins {
 }
 
 group = "dev.retrotv"
-version = "0.7.0-alpha"
+version = "0.8.0-alpha"
 
 // Github Action 버전 출력용
 tasks.register("printVersionName") {
@@ -20,6 +20,7 @@ repositories {
 dependencies {
     implementation(kotlin("stdlib-jdk8"))
     testImplementation(kotlin("test"))
+    testImplementation("org.junit.jupiter:junit-jupiter-params:5.10.0")
 }
 
 tasks {
