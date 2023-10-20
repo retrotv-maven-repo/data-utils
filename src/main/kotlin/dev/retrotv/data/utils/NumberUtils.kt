@@ -8,9 +8,10 @@ val ARGUMENTS_IS_BIGGER_THEN_TWO = "매개변수의 개수는 2보다 작을 수
 
 fun leastCommonMultiple(vararg values: Long): Long {
     require(values.size >= 2) { ARGUMENTS_IS_BIGGER_THEN_TWO }
-    val queue: Queue<Long> = LinkedList(values.toList())
 
+    val queue: Queue<Long> = LinkedList(values.toList())
     var lcmValue: Long? = null
+
     while (queue.peek() != null) {
         val val1 = lcmValue ?: queue.poll()
         val val2 = queue.poll()
@@ -20,15 +21,12 @@ fun leastCommonMultiple(vararg values: Long): Long {
     return lcmValue!!
 }
 
-fun leastCommonMultiple(vararg values: Int): Long {
+fun leastCommonMultiple(vararg values: Int): Int {
     require(values.size >= 2) { ARGUMENTS_IS_BIGGER_THEN_TWO }
 
-    val newValues = longArrayOf()
-    values.forEachIndexed { index, i -> newValues[index] = i.toLong() }
+    val queue: Queue<Int> = LinkedList(values.toList())
+    var lcmValue: Int? = null
 
-    val queue: Queue<Long> = LinkedList(newValues.toList())
-
-    var lcmValue: Long? = null
     while (queue.peek() != null) {
         val val1 = lcmValue ?: queue.poll()
         val val2 = queue.poll()
@@ -39,13 +37,14 @@ fun leastCommonMultiple(vararg values: Int): Long {
 }
 
 private fun lcm(value1: Long, value2: Long): Long = (value1 * value2) / gcm(value1, value2)
-private fun lcm(value1: Int, value2: Int): Long = (value1 * value2) / gcm(value1, value2)
+private fun lcm(value1: Int, value2: Int): Int = (value1 * value2) / gcm(value1, value2)
 
 fun greatestCommonDivisor(vararg values: Long): Long {
     require(values.size >= 2) { ARGUMENTS_IS_BIGGER_THEN_TWO }
-    val queue: Queue<Long> = LinkedList(values.toList())
 
+    val queue: Queue<Long> = LinkedList(values.toList())
     var gcmValue: Long? = null
+
     while (queue.peek() != null) {
         val val1 = gcmValue ?: queue.poll()
         val val2 = queue.poll()
@@ -55,15 +54,12 @@ fun greatestCommonDivisor(vararg values: Long): Long {
     return gcmValue!!
 }
 
-fun greatestCommonDivisor(vararg values: Int): Long {
+fun greatestCommonDivisor(vararg values: Int): Int {
     require(values.size >= 2) { ARGUMENTS_IS_BIGGER_THEN_TWO }
 
-    val newValues = longArrayOf()
-    values.forEachIndexed { index, i -> newValues[index] = i.toLong() }
+    val queue: Queue<Int> = LinkedList(values.toList())
+    var gcmValue: Int? = null
 
-    val queue: Queue<Long> = LinkedList(newValues.toList())
-
-    var gcmValue: Long? = null
     while (queue.peek() != null) {
         val val1 = gcmValue ?: queue.poll()
         val val2 = queue.poll()
@@ -80,9 +76,9 @@ private fun gcm(value1: Long, value2: Long): Long =
         value1
     }
 
-private fun gcm(value1: Int, value2: Int): Long =
+private fun gcm(value1: Int, value2: Int): Int =
     if (value2 != 0) {
         gcm(value2, value1 % value2)
     } else {
-        value1.toLong()
+        value1
     }
