@@ -2,11 +2,11 @@ plugins {
     java
     kotlin("jvm") version "1.9.0"
     `maven-publish`
-    id("org.jetbrains.dokka") version "1.8.20"
+    id("org.jetbrains.dokka") version "1.9.10"
 }
 
 group = "dev.retrotv"
-version = "0.8.0-alpha"
+version = "0.9.0-alpha"
 
 // Github Action 버전 출력용
 tasks.register("printVersionName") {
