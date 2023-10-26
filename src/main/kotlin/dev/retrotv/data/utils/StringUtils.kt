@@ -339,5 +339,5 @@ fun scrambleChars(value: String): String {
         i++
     }
 
-    return newCharArray.contentToString()
+    return String(newCharArray)
 }
