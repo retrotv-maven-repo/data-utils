@@ -4,6 +4,7 @@ package dev.retrotv.data.utils
 import dev.retrotv.data.enums.OperatingSystem
 import java.lang.IllegalArgumentException
 import java.math.RoundingMode
+import java.security.SecureRandom
 import java.text.DecimalFormat
 
 /**
@@ -316,4 +317,21 @@ fun isPhoneNumber(value: String): Boolean {
     val result1 = isHomePhoneNumber(value)
     val result2 = isCellPhoneNumber(value)
     return result1 || result2
+}
+
+fun scrambleChars(value: String): String {
+    val ca = value.toCharArray()
+    val orgValueMutableList = ca.toMutableList()
+    val newCharArray = CharArray(ca.size)
+    val sr = SecureRandom()
+
+    var i = 0
+    while (i < newCharArray.size) {
+        val random: Int = sr.nextInt(orgValueMutableList.size)
+        newCharArray[i] = orgValueMutableList[random]
+        orgValueMutableList.removeAt(random)
+        i++
+    }
+
+    return newCharArray.contentToString()
 }
