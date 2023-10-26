@@ -597,4 +597,10 @@ class StringUtilsTest {
             assertFalse(isCellPhoneNumber(number))
         }
     }
+
+    @Test
+    @DisplayName("scrambleChars 메소드 테스트")
+    fun test_scrambleChars_method() {
+        println(scrambleChars("Hello, World!"))
+    }
 }
