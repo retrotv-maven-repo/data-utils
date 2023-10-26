@@ -319,6 +319,12 @@ fun isPhoneNumber(value: String): Boolean {
     return result1 || result2
 }
 
+/**
+ * 문자열에 포함된 문자들을 무작위로 섞은 뒤, 반환합니다.
+ *
+ * @param value 원본 문자열
+ * @return 원본 문자열을 무작위로 섞은 문자열
+ */
 fun scrambleChars(value: String): String {
     val ca = value.toCharArray()
     val orgValueMutableList = ca.toMutableList()
