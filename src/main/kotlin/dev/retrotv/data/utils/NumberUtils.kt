@@ -4,7 +4,7 @@ package dev.retrotv.data.utils
 import java.util.LinkedList
 import java.util.Queue
 
-val ARGUMENTS_CANT_LESS_THEN_TWO = "매개변수의 개수는 2보다 작을 수 없습니다."
+const val ARGUMENTS_CANT_LESS_THEN_TWO = "매개변수의 개수는 2보다 작을 수 없습니다."
 
 /**
  * 가변 인자로 입력받은 Long 자료형 값들의 최소공배수를 구하고 반환합니다.
