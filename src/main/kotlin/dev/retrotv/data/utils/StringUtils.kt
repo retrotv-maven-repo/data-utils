@@ -209,3 +209,15 @@ fun scrambleChars(value: String): String {
 
     return String(newCharArray)
 }
+
+fun isNull(value: CharSequence?): Boolean {
+    return value == null
+}
+
+fun isEmpty(value: CharSequence?): Boolean {
+    return value.isNullOrEmpty()
+}
+
+fun isBlank(value: CharSequence?): Boolean {
+    return value.isNullOrBlank()
+}

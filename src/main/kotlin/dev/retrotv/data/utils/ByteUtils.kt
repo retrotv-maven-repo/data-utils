@@ -21,3 +21,11 @@ fun hexToBinary(hex: String): ByteArray {
 fun base64ToBinary(base64: String): ByteArray {
     return Base64.decodeBase64(base64)
 }
+
+fun isNull(data: ByteArray?): Boolean {
+    return data == null
+}
+
+fun isEmpty(data: ByteArray?): Boolean {
+    return isNull(data) || data?.size == 0
+}

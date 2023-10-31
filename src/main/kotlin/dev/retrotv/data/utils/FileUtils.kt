@@ -22,3 +22,6 @@ fun read(file: File): ByteArray {
     return fileData
 }
 
+fun isNull(file: File?): Boolean {
+    return file == null
+}
