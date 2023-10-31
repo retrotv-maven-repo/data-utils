@@ -132,3 +132,7 @@ fun isPhoneNumber(value: String): Boolean {
     val result2 = isCellPhoneNumber(value)
     return result1 || result2
 }
+
+fun isNull(obj: Any?): Boolean {
+    return obj == null;
+}
