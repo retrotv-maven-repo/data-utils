@@ -1,6 +1,8 @@
 @file:JvmName("ByteUtils")
 package dev.retrotv.data.utils
 
+import dev.retrotv.data.enums.EncodeFormat
+import dev.retrotv.data.enums.EncodeFormat.*
 import org.apache.commons.codec.DecoderException
 import org.apache.commons.codec.binary.Base64
 import org.apache.commons.codec.binary.Hex
@@ -20,6 +22,13 @@ fun hexToBinary(hex: String): ByteArray {
 
 fun base64ToBinary(base64: String): ByteArray {
     return Base64.decodeBase64(base64)
+}
+
+fun binaryEncode(encodeFormat: EncodeFormat, data: ByteArray): String {
+    return when (encodeFormat) {
+        BASE64 -> binaryToBase64(data)
+        HEX -> binaryToHex(data)
+    }
 }
 
 fun isNull(data: ByteArray?): Boolean {
