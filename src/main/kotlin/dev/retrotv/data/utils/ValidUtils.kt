@@ -133,6 +133,12 @@ fun isPhoneNumber(value: String): Boolean {
     return result1 || result2
 }
 
+/**
+ * 인수로 넘어온 객체가 null인지 확인합니다.
+ *
+ * @para obj 검증할 객체
+ * @return null 여부
+ */
 fun isNull(obj: Any?): Boolean {
-    return obj == null;
+    return obj == null
 }
