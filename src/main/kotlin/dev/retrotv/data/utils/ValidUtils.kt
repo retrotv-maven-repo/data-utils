@@ -68,6 +68,45 @@ fun isIncludeKorean(value: String): Boolean {
 }
 
 /**
+ * 유효한 날짜(yyyyMMdd 혹은 yyyy-MM-dd)인지 검증 여부를 반환합니다.
+ *
+ * @param value 검증할 문자열
+ * @return 유효한 날짜인지 검증 여부
+ */
+fun isDate(value: String): Boolean {
+    if (value.length != 8 && value.length != 10) {
+        return false
+    }
+
+    if (value.length == 8 && !value.matches(Regex("^\\d{8}$"))) {
+        return false
+    }
+
+    if (value.length == 10 && !value.matches(Regex("^\\d{4}-\\d{2}-\\d{2}$"))) {
+        return false
+    }
+
+    val newValue = value.replace("-", "")
+
+    val year = newValue.substring(0, 4).toInt()
+    val month = newValue.substring(4, 6).toInt()
+    val day = newValue.substring(6, 8).toInt()
+
+    if (year in 0..9999 && month in 1..12) {
+        when (month) {
+            1, 3, 5, 7, 8, 10, 12 ->
+                return day in 1..31
+            4, 6, 9, 11 ->
+                return day in 1..30
+            2 ->
+                return if (isLeapYear(year)) { day in 1..29 } else { day in 1..28 }
+        }
+    }
+
+    return false
+}
+
+/**
  * 이메일 형식인지 확인합니다.
  *
  * @param value 검증할 문자열
@@ -133,6 +172,12 @@ fun isPhoneNumber(value: String): Boolean {
     return result1 || result2
 }
 
+/**
+ * 인수로 넘어온 객체가 null인지 확인합니다.
+ *
+ * @para obj 검증할 객체
+ * @return null 여부
+ */
 fun isNull(obj: Any?): Boolean {
-    return obj == null;
+    return obj == null
 }
