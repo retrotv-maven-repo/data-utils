@@ -38,3 +38,18 @@ fun isNull(data: ByteArray?): Boolean {
 fun isEmpty(data: ByteArray?): Boolean {
     return isNull(data) || data?.size == 0
 }
+
+fun combineByteArray(vararg byteArrays: ByteArray) {
+    val arraySize = byteArrays.size
+    require(arraySize > 1) { "인수로 들어오는 byte 배열의 개수는 2개 이상이어야 합니다." }
+
+    var totalByteSize = 0
+    byteArrays.forEach { totalByteSize += it.size }
+
+    val combinedByteArray = ByteArray(totalByteSize)
+    var destPos = 0
+    byteArrays.forEach {
+        System.arraycopy(it, 0, combinedByteArray, destPos, it.size)
+        destPos += it.size
+    }
+}
