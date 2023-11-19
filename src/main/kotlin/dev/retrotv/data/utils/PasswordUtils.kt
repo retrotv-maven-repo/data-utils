@@ -9,16 +9,11 @@ fun checkLength(password: CharSequence, minLength: Int = 8, maxLength: Int = 16)
 @JvmOverloads
 fun isInclude(
     password: CharSequence,
-    includeEnglish: Boolean = false,
     includeLowerCaseEnglish: Boolean = true,
     includeUpperCaseEnglish: Boolean = true,
     includeNumber: Boolean = true,
     includeSpecialCharacter: Boolean = true
 ): Boolean {
-    if (includeEnglish && !isIncludeEnglish(password.toString())) {
-        return false
-    }
-
     if (includeLowerCaseEnglish && !isIncludeLowerCase(password.toString())) {
         return false
     }
@@ -27,7 +22,13 @@ fun isInclude(
         return false
     }
 
-    return if (includeNumber && !isIncludeNumber(password.toString())) {
-        false
-    } else !includeSpecialCharacter || isIncludeSpecialCharacter(password.toString())
+    if (includeNumber && !isIncludeNumber(password.toString())) {
+        return false
+    }
+
+    if (includeSpecialCharacter && !isIncludeSpecialCharacter(password.toString())) {
+        return false
+    }
+
+    return true
 }
