@@ -4,7 +4,7 @@ import dev.retrotv.data.enums.OperatingSystem
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
 
-import org.junit.jupiter.api.Assertions.*
+import kotlin.test.*
 import java.math.RoundingMode
 import java.util.*
 

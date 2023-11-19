@@ -2,9 +2,7 @@ package dev.retrotv.data.utils
 
 import org.junit.jupiter.api.DisplayName
 import kotlin.test.Test
-import kotlin.test.assertEquals
-import kotlin.test.assertTrue
-import kotlin.test.assertFalse
+import kotlin.test.*
 
 class DateUtilsTest {
 

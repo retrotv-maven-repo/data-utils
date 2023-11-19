@@ -2,7 +2,6 @@
 package dev.retrotv.data.utils
 
 import dev.retrotv.data.enums.OperatingSystem
-import java.lang.IllegalArgumentException
 import java.math.RoundingMode
 import java.security.SecureRandom
 import java.text.DecimalFormat
@@ -130,9 +129,7 @@ fun masking(value: String,
             maskChar: Char,
             start: Int = 0,
             end: Int = value.toCharArray().size - 1): String {
-    require(start <= end) {
-        throw IllegalArgumentException("end 값이 start보다 크거나 같을 수 없습니다")
-    }
+    require(start <= end) { "end 값이 start보다 크거나 같을 수 없습니다" }
 
     val arr = value.toCharArray()
     for (i in arr.indices) {
