@@ -97,10 +97,10 @@ class StringUtilsTest {
     @Test
     @DisplayName("decimalToString(?, ?, ?) 메소드 테스트")
     fun test_decimalToString_three_parameter_method() {
-        var returnValue = deciamlToString((1.0/3.0), "#.##", RoundingMode.UP)
+        var returnValue = decimalToString((1.0/3.0), "#.##", RoundingMode.UP)
         assertEquals("0.34", returnValue)
 
-        returnValue = deciamlToString((5.0/3.0), "#.##", RoundingMode.DOWN)
+        returnValue = decimalToString((5.0/3.0), "#.##", RoundingMode.DOWN)
         assertEquals("1.66", returnValue)
     }
 
