@@ -16,9 +16,9 @@ class ByteUtilsTest {
     @Test
     @DisplayName("combineByteArray 메소드 테스트")
     fun test_combineByteArray_method() {
-        val byteArray1: ByteArray = ByteArray(8)
-        val byteArray2: ByteArray = ByteArray(16)
-        val byteArray3: ByteArray = ByteArray(4)
+        val byteArray1 = ByteArray(8)
+        val byteArray2 = ByteArray(16)
+        val byteArray3 = ByteArray(4)
         byteArray1[0] = 1
         byteArray1[1] = 1
         byteArray1[2] = 1

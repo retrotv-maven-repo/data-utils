@@ -2,10 +2,22 @@
 package dev.retrotv.data.utils
 
 import dev.retrotv.data.enums.OperatingSystem
-import java.lang.IllegalArgumentException
+import org.apache.commons.codec.DecoderException
+import org.apache.commons.codec.binary.Base64
+import org.apache.commons.codec.binary.Hex
 import java.math.RoundingMode
+import java.nio.charset.Charset
 import java.security.SecureRandom
 import java.text.DecimalFormat
+
+fun toByteArray(data: String): ByteArray = data.toByteArray()
+
+fun toByteArray(data: String, charset: Charset): ByteArray = data.toByteArray(charset)
+
+@Throws(DecoderException::class)
+fun hexStringToByteArray(hex: String): ByteArray = Hex.decodeHex(hex)
+
+fun base64StringToByteArray(base64: String): ByteArray = Base64.decodeBase64(base64)
 
 /**
  * <pre>
@@ -130,9 +142,7 @@ fun masking(value: String,
             maskChar: Char,
             start: Int = 0,
             end: Int = value.toCharArray().size - 1): String {
-    require(start <= end) {
-        throw IllegalArgumentException("end 값이 start보다 크거나 같을 수 없습니다")
-    }
+    require(start <= end) { "end 값이 start보다 크거나 같을 수 없습니다" }
 
     val arr = value.toCharArray()
     for (i in arr.indices) {
@@ -169,7 +179,7 @@ fun deciamlToString(value: Double, format: String): String {
  * @param mode [RoundingMode] enum 참조
  * @return 지정된 포맷으로 변환된 String 값
  */
-fun deciamlToString(value: Double, format: String, mode: RoundingMode): String {
+fun decimalToString(value: Double, format: String, mode: RoundingMode): String {
     val df = DecimalFormat(format)
     df.roundingMode = mode
     return df.format(value)
@@ -210,14 +220,8 @@ fun scrambleChars(value: String): String {
     return String(newCharArray)
 }
 
-fun isNull(value: CharSequence?): Boolean {
-    return value == null
-}
+fun isNull(value: CharSequence?): Boolean = value == null
 
-fun isEmpty(value: CharSequence?): Boolean {
-    return value.isNullOrEmpty()
-}
+fun isEmpty(value: CharSequence?): Boolean = value.isNullOrEmpty()
 
-fun isBlank(value: CharSequence?): Boolean {
-    return value.isNullOrBlank()
-}
+fun isBlank(value: CharSequence?): Boolean = value.isNullOrBlank()
