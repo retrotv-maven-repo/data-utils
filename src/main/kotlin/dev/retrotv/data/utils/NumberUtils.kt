@@ -1,8 +1,7 @@
 @file:JvmName("NumberUtils")
 package dev.retrotv.data.utils
 
-import java.util.LinkedList
-import java.util.Queue
+import java.util.*
 
 const val ARGUMENTS_CANT_LESS_THEN_TWO = "인자의 개수는 2보다 작을 수 없습니다."
 

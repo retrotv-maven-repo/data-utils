@@ -1,9 +1,6 @@
 @file:JvmName("ByteUtils")
 package dev.retrotv.data.utils
 
-import dev.retrotv.data.enums.EncodeFormat
-import dev.retrotv.data.enums.EncodeFormat.*
-import org.apache.commons.codec.DecoderException
 import org.apache.commons.codec.binary.Base64
 import org.apache.commons.codec.binary.Hex
 import java.nio.charset.Charset
