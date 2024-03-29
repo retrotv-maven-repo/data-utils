@@ -28,3 +28,14 @@ fun <T> removeDuplicates(values: List<T>, orgOrder: Boolean = false): List<T> {
 
     return newValues.toList()
 }
+
+/**
+ * List에 중복된 데이터가 존재하는지 확인하고, 중복여부를 반환합니다.
+ *
+ * @param values 중복을 확인할 list
+ * @return 중복여부
+ */
+fun <T> isDuplicated(values: List<T>): Boolean {
+    val newValues = values.toSet().toMutableList()
+    return values.size != newValues.size
+}

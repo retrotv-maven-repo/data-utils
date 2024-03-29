@@ -17,11 +17,14 @@ repositories {
     mavenCentral()
 }
 
+val apacheCommonCodec = "1.16.1"
+val junit = "5.10.2"
+
 dependencies {
     implementation(kotlin("stdlib-jdk8"))
-    implementation("commons-codec:commons-codec:1.16.0")
+    implementation("commons-codec:commons-codec:${apacheCommonCodec}")
+    testImplementation("org.junit.jupiter:junit-jupiter-params:${junit}")
     testImplementation(kotlin("test"))
-    testImplementation("org.junit.jupiter:junit-jupiter-params:5.10.0")
 }
 
 tasks {

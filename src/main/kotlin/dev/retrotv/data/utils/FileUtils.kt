@@ -16,7 +16,7 @@ fun read(file: File): ByteArray {
             dis.readFully(fileData)
         }
     } catch (e: IOException) {
-        throw IOException("파일을 읽어들이는 과정에서 오류가 발생했습니다.")
+        throw IOException("파일을 읽어 들이는 과정에서 오류가 발생했습니다.")
     }
 
     return fileData

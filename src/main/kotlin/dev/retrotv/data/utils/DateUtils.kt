@@ -23,7 +23,7 @@ fun isLeapYear(year: Int): Boolean {
 
 /**
  * 해당하는 달의 마지막 날을 구합니다.
- * year는 필수 인수가 아니지만, month가 2일 경우에는 필수입니다.
+ * year는 필수 인수가 아니지만, month가 2일 경우에는 필수 입니다.
  *
  * @param year 연도
  * @param month 달
