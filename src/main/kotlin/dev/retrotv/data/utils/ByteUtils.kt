@@ -1,33 +1,48 @@
-@file:JvmName("ByteUtils")
 package dev.retrotv.data.utils
 
 import org.apache.commons.codec.binary.Base64
 import org.apache.commons.codec.binary.Hex
 import java.nio.charset.Charset
 
-fun toString(data: ByteArray): String = String(data)
+object ByteUtils {
 
-fun toString(data: ByteArray, charset: Charset): String = String(data, charset)
+    /**
+     * data를 문자열로 변환하여 반환합니다.
+     *
+     * @param data 문자열로 반환할 데이터
+     * @return 변환된 문자열
+     */
+    @JvmStatic
+    fun toString(data: ByteArray): String = String(data)
 
-fun toHexString(data: ByteArray): String = Hex.encodeHexString(data)
+    @JvmStatic
+    fun toString(data: ByteArray, charset: Charset): String = String(data, charset)
 
-fun toBase64String(data: ByteArray): String = Base64.encodeBase64String(data)
+    @JvmStatic
+    fun toHexString(data: ByteArray): String = Hex.encodeHexString(data)
 
-fun isNull(data: ByteArray?): Boolean = data == null
+    @JvmStatic
+    fun toBase64String(data: ByteArray): String = Base64.encodeBase64String(data)
 
-fun isEmpty(data: ByteArray?): Boolean = isNull(data) || data?.size == 0
+    @JvmStatic
+    fun isNull(data: ByteArray?): Boolean = data == null
 
-fun combineByteArray(vararg byteArrays: ByteArray) {
-    val arraySize = byteArrays.size
-    require(arraySize > 1) { "인수로 들어오는 byte 배열의 개수는 2개 이상이어야 합니다." }
+    @JvmStatic
+    fun isEmpty(data: ByteArray?): Boolean = isNull(data) || data?.size == 0
 
-    var totalByteSize = 0
-    byteArrays.forEach { totalByteSize += it.size }
+    @JvmStatic
+    fun combineByteArray(vararg byteArrays: ByteArray) {
+        val arraySize = byteArrays.size
+        require(arraySize > 1) { "인수로 들어오는 byte 배열의 개수는 2개 이상이어야 합니다." }
 
-    val combinedByteArray = ByteArray(totalByteSize)
-    var destPos = 0
-    byteArrays.forEach {
-        System.arraycopy(it, 0, combinedByteArray, destPos, it.size)
-        destPos += it.size
+        var totalByteSize = 0
+        byteArrays.forEach { totalByteSize += it.size }
+
+        val combinedByteArray = ByteArray(totalByteSize)
+        var destPos = 0
+        byteArrays.forEach {
+            System.arraycopy(it, 0, combinedByteArray, destPos, it.size)
+            destPos += it.size
+        }
     }
 }

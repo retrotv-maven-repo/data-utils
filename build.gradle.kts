@@ -2,15 +2,19 @@ plugins {
     java
     kotlin("jvm") version "1.9.0"
     `maven-publish`
-    id("org.jetbrains.dokka") version "1.9.10"
+    id("org.jetbrains.dokka") version "1.9.20"
 }
 
 group = "dev.retrotv"
-version = "0.14.0-alpha"
+version = "0.15.0-alpha"
 
 // Github Action 버전 출력용
 tasks.register("printVersionName") {
     println(project.version)
+}
+
+tasks.dokkaHtml {
+    outputDirectory.set(layout.buildDirectory.dir("documentation/html"))
 }
 
 repositories {

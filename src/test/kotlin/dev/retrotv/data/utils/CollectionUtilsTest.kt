@@ -21,7 +21,7 @@ class CollectionUtilsTest {
         values.add("2")
         assertEquals(values.size, 8)
 
-        val removedDuplicates = removeDuplicates(values, true)
+        val removedDuplicates = CollectionUtils.removeDuplicates(values, true)
         assertEquals(removedDuplicates.size, 5)
 
         // 순서 보장 테스트
@@ -44,10 +44,10 @@ class CollectionUtilsTest {
         values.add("4")
         values.add("5")
 
-        asserter.assertTrue("중복된 데이터가 존재합니다.", !isDuplicated(values))
+        asserter.assertTrue("중복된 데이터가 존재합니다.", !CollectionUtils.isDuplicated(values))
 
         values.add("1")
 
-        asserter.assertTrue("중복된 데이터가 존재하지 않습니다.", isDuplicated(values))
+        asserter.assertTrue("중복된 데이터가 존재하지 않습니다.", CollectionUtils.isDuplicated(values))
     }
 }
