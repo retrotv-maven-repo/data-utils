@@ -15,21 +15,57 @@ object ByteUtils {
     @JvmStatic
     fun toString(data: ByteArray): String = String(data)
 
+    /**
+     * data를 지정된 charset으로 인코딩한 문자열을 반환합니다.
+     *
+     * @param data 문자열로 반환할 데이터
+     * @param charset 인코딩 시 지정할 캐릭터셋
+     * @return 변환된 문자열
+     */
     @JvmStatic
     fun toString(data: ByteArray, charset: Charset): String = String(data, charset)
 
+    /**
+     * data를 Hex 타입 문자열로 변환하여 반환합니다.
+     *
+     * @param data Hex 타입 문자열로 반환할 데이터
+     * @return 변환된 문자열
+     */
     @JvmStatic
     fun toHexString(data: ByteArray): String = Hex.encodeHexString(data)
 
+    /**
+     * data를 Base64 타입 문자열로 변환하여 반환합니다.
+     *
+     * @param data Base64 타입 문자열로 반환할 데이터
+     * @return 변환된 문자열
+     */
     @JvmStatic
     fun toBase64String(data: ByteArray): String = Base64.encodeBase64String(data)
 
+    /**
+     * data가 null인지 확인합니다.
+     *
+     * @param data null 여부를 확인할 데이터
+     * @return null 여부
+     */
     @JvmStatic
     fun isNull(data: ByteArray?): Boolean = data == null
 
+    /**
+     * data가 null 혹은 크기가 0인지 확인합니다.
+     *
+     * @param data null 혹은 size == 0 여부를 확인할 데이터
+     * @return null 혹은 size == 0 여부
+     */
     @JvmStatic
     fun isEmpty(data: ByteArray?): Boolean = isNull(data) || data?.size == 0
 
+    /**
+     * ByteArray(byte[])를 조합하고 반환합니다.
+     *
+     * @param byteArrays 조합할 ByteArray(byte[]) 집합
+     */
     @JvmStatic
     fun combineByteArray(vararg byteArrays: ByteArray) {
         val arraySize = byteArrays.size

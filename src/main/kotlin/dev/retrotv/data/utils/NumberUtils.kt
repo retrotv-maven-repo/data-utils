@@ -91,23 +91,24 @@ object NumberUtils {
 
         return gcmValue!!
     }
-
-    private fun lcm(value1: Long, value2: Long): Long = (value1 * value2) / gcm(value1, value2)
-    private fun lcm(value1: Int, value2: Int): Int = (value1 * value2) / gcm(value1, value2)
-
-    private fun gcm(value1: Long, value2: Long): Long =
-        if (value2 != 0.toLong()) {
-            gcm(value2, value1 % value2)
-        } else {
-            value1
-        }
-
-    private fun gcm(value1: Int, value2: Int): Int =
-        if (value2 != 0) {
-            gcm(value2, value1 % value2)
-        } else {
-            value1
-        }
-
-    private const val ARGUMENTS_CANT_LESS_THEN_TWO = "인자의 개수는 2보다 작을 수 없습니다."
 }
+
+private const val ARGUMENTS_CANT_LESS_THEN_TWO = "인자의 개수는 2보다 작을 수 없습니다."
+
+private fun lcm(value1: Long, value2: Long): Long = (value1 * value2) / gcm(value1, value2)
+
+private fun lcm(value1: Int, value2: Int): Int = (value1 * value2) / gcm(value1, value2)
+
+private fun gcm(value1: Long, value2: Long): Long =
+    if (value2 != 0.toLong()) {
+        gcm(value2, value1 % value2)
+    } else {
+        value1
+    }
+
+private fun gcm(value1: Int, value2: Int): Int =
+    if (value2 != 0) {
+        gcm(value2, value1 % value2)
+    } else {
+        value1
+    }

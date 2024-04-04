@@ -6,6 +6,13 @@ import java.io.IOException
 import java.nio.file.Files
 
 object FileUtils {
+
+    /**
+     * 파일을 읽어들이는 메소드
+     *
+     * @param file 읽어들일 메소드
+     * @return ByteArray(byte[])형으로 변환된 데이터
+     */
     @JvmStatic
     @Throws(IOException::class)
     fun read(file: File): ByteArray {
@@ -23,8 +30,21 @@ object FileUtils {
         return fileData
     }
 
+    /**
+     * 파일 객체가 null인지 확인합니다.
+     *
+     * @param file null 여부를 확인할 File 객체
+     * @return null 여부
+     */
     @JvmStatic
-    fun isNull(file: File?): Boolean {
-        return file == null
-    }
+    fun isNull(file: File?): Boolean = file == null
+
+    /**
+     * 파일 객체가 null 혹은 크기가 0byte인지 확인합니다.
+     *
+     * @param file null 여부를 확인할 File 객체
+     * @return null 혹은 0byte 여부
+     */
+    @JvmStatic
+    fun isEmpty(file: File?): Boolean = isNull(file) || (file?.length() == 0L)
 }

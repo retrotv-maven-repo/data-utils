@@ -134,17 +134,22 @@ object DateUtils {
 
         return sdf.format(cal.time)
     }
-
-    private const val NOT_VALID_DATE = "date가 유효한 일자가 아닙니다."
-    private const val NOT_VALID_YEAR = "year가 유효한 연도가 아닙니다."
-    private const val NOT_NULL_OR_VALID_YEAR = "year가 null이 아니면서, 유효한 연도가 아닙니다."
-    private const val NOT_VALID_MONTH = "month가 유효한 월이 아닙니다."
-
-    private fun isValidYear(year: String): Boolean = year.toInt() in 1..9999
-    private fun isValidYear(year: Int): Boolean = year in 1..9999
-    private fun isValidMonth(month: String): Boolean = month.toInt() in 1..12
-    private fun isValidMonth(month: Int): Boolean = month in 1..12
-    private fun isValidDay(year: String, month: String, day: String): Boolean =
-        day.toInt() in 1..getLastDay(year, month).toInt()
-    private fun isValidDay(year: Int, month: Int, day: Int): Boolean = day in 1..getLastDay(year, month)
 }
+
+private const val NOT_VALID_DATE = "date가 유효한 일자가 아닙니다."
+private const val NOT_VALID_YEAR = "year가 유효한 연도가 아닙니다."
+private const val NOT_NULL_OR_VALID_YEAR = "year가 null이 아니면서, 유효한 연도가 아닙니다."
+private const val NOT_VALID_MONTH = "month가 유효한 월이 아닙니다."
+
+private fun isValidYear(year: String): Boolean = year.toInt() in 1..9999
+
+private fun isValidYear(year: Int): Boolean = year in 1..9999
+
+private fun isValidMonth(month: String): Boolean = month.toInt() in 1..12
+
+private fun isValidMonth(month: Int): Boolean = month in 1..12
+
+private fun isValidDay(year: String, month: String, day: String): Boolean =
+    day.toInt() in 1..DateUtils.getLastDay(year, month).toInt()
+
+private fun isValidDay(year: Int, month: Int, day: Int): Boolean = day in 1..DateUtils.getLastDay(year, month)
