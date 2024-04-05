@@ -10,16 +10,43 @@ import java.security.SecureRandom
 import java.text.DecimalFormat
 
 object StringUtils {
-    @JvmStatic
-    fun toByteArray(data: String): ByteArray = data.toByteArray()
 
+    /**
+     * 문자열을 ByteArray(byte[])형태로 변환하고 반환합니다.
+     *
+     * @param value ByteArray(byte[])로 변환할 문자열
+     * @return 변환된 바이트 배열
+     */
     @JvmStatic
-    fun toByteArray(data: String, charset: Charset): ByteArray = data.toByteArray(charset)
+    fun toByteArray(value: String): ByteArray = value.toByteArray()
 
+    /**
+     * 문자열을 정해진 캐릭터 셋의 ByteArray(byte[])형태로 변환하고 반환합니다.
+     *
+     * @param value ByteArray(byte[])로 변환할 문자열
+     * @param charset ByteArray(byte[])로 변환시 사용할 캐릭터 셋
+     * @return 변환된 바이트 배열
+     */
+    @JvmStatic
+    fun toByteArray(value: String, charset: Charset): ByteArray = value.toByteArray(charset)
+
+    /**
+     * Hex 형식의 문자열을 ByteArray(byte[])형태로 변환하고 반환합니다.
+     *
+     * @param hex Hex 형식의 문자열
+     * @return 변환된 바이트 배열
+     * @exception DecoderException 디코딩 실패 시 던져짐
+     */
     @JvmStatic
     @Throws(DecoderException::class)
     fun hexStringToByteArray(hex: String): ByteArray = Hex.decodeHex(hex)
 
+    /**
+     * Base64 형식의 문자열을 ByteArray(byte[])형태로 변환하고 반환합니다.
+     *
+     * @param base64 Base64 형식의 문자열
+     * @return 변환된 바이트 배열
+     */
     @JvmStatic
     fun base64StringToByteArray(base64: String): ByteArray = Base64.decodeBase64(base64)
 
@@ -242,12 +269,30 @@ object StringUtils {
         return String(newCharArray)
     }
 
+    /**
+     * 문자열이 null인지 확인합니다.
+     *
+     * @param value 문자열
+     * @return null 여부
+     */
     @JvmStatic
     fun isNull(value: CharSequence?): Boolean = value == null
 
+    /**
+     * 문자열이 null 혹은 빈 문자열인지 확인합니다.
+     *
+     * @param value 문자열
+     * @return null 혹은 빈 문자열 여부
+     */
     @JvmStatic
     fun isEmpty(value: CharSequence?): Boolean = value.isNullOrEmpty()
 
+    /**
+     * 문자열이 null, 빈 문자열 혹은 공백인지 확인합니다.
+     *
+     * @param value 문자열
+     * @return null, 빈 문자열 혹은 공백 여부
+     */
     @JvmStatic
     fun isBlank(value: CharSequence?): Boolean = value.isNullOrBlank()
 }
