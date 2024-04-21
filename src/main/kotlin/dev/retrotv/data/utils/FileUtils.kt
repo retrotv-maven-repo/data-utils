@@ -10,7 +10,7 @@ object FileUtils {
     /**
      * 파일을 읽어들이고 ByteArray(byte[]) 형태로 반환하는 메소드
      *
-     * @param file 읽어들일 메소드
+     * @param file 읽어들일 파일
      * @return ByteArray(byte[])형으로 변환된 데이터
      */
     @JvmStatic
