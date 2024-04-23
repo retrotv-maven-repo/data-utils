@@ -55,4 +55,16 @@ class DateUtilsTest {
         assertEquals("20241231", DateUtils.addYMD("20231231", 1, null,null, "yyyyMMdd"))
         assertEquals("2024-12-31", DateUtils.addYMD("2023-12-31", 1, null,null, "yyyy-MM-dd"))
     }
+
+    @Test
+    @DisplayName("stringToDate 메소드 테스트")
+    fun test_stringToDate() {
+
+    }
+
+    @Test
+    @DisplayName("dateToString 메소드 테스트")
+    fun test_dateToString() {
+
+    }
 }

@@ -3,6 +3,7 @@ package dev.retrotv.data.utils
 import java.text.ParseException
 import java.text.SimpleDateFormat
 import java.util.Calendar
+import java.util.Date
 
 object DateUtils {
 
@@ -133,6 +134,21 @@ object DateUtils {
         if (day != null && day != 0) { cal.add(Calendar.DATE, day) }
 
         return sdf.format(cal.time)
+    }
+
+    @JvmStatic
+    @JvmOverloads
+    @Throws(ParseException::class)
+    fun stringToDate(date: String, format: String = "yyyyMMdd"): Date {
+        val dateFormat = SimpleDateFormat(format)
+        return dateFormat.parse(date)
+    }
+
+    @JvmStatic
+    @JvmOverloads
+    fun dateToString(date: Date, format: String = "yyyyMMdd"): String {
+        val dateFormat = SimpleDateFormat(format)
+        return dateFormat.format(date)
     }
 }
 
