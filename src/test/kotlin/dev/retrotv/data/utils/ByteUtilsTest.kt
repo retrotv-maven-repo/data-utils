@@ -10,7 +10,7 @@ class ByteUtilsTest {
     @DisplayName("isEmpty 메소드 테스트")
     fun test_isEmpty_method() {
         val data: ByteArray = byteArrayOf()
-        assertTrue(isEmpty(data))
+        assertTrue(ByteUtils.isEmpty(data))
     }
 
     @Test
@@ -50,6 +50,6 @@ class ByteUtilsTest {
         byteArray3[2] = 0
         byteArray3[3] = 0
 
-        combineByteArray(byteArray1, byteArray2, byteArray3)
+        ByteUtils.combineByteArray(byteArray1, byteArray2, byteArray3)
     }
 }

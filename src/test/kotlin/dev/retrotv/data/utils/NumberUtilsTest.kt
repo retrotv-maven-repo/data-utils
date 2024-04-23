@@ -15,7 +15,7 @@ class NumberUtilsTest {
     )
     @ParameterizedTest(name = "greatestCommonDivisor({0}, {1}) 메소드 테스트")
     fun test_greatestCommonDivisor_method(value1: Long, value2: Long, value3: Long) {
-        assertEquals(value3, greatestCommonDivisor(value1, value2));
+        assertEquals(value3, NumberUtils.greatestCommonDivisor(value1, value2));
     }
 
     @CsvSource(
@@ -27,7 +27,7 @@ class NumberUtilsTest {
     )
     @ParameterizedTest(name = "lesatCommonMultiple({0}, {1}) 메소드 테스트")
     fun test_lesatCommonMultiple1_method(value1: Long, value2: Long, value3: Long) {
-        assertEquals(value3, leastCommonMultiple(value1, value2));
+        assertEquals(value3, NumberUtils.leastCommonMultiple(value1, value2));
     }
 
     @CsvSource(
@@ -39,6 +39,6 @@ class NumberUtilsTest {
     )
     @ParameterizedTest(name = "lesatCommonMultiple({0}, {1}, {2}) 메소드 테스트")
     fun test_lesatCommonMultiple2_method(value1: Long, value2: Long, value3: Long, val4: Long) {
-        assertEquals(val4, leastCommonMultiple(value1, value2, value3));
+        assertEquals(val4, NumberUtils.leastCommonMultiple(value1, value2, value3));
     }
 }
