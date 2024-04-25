@@ -67,4 +67,10 @@ class DateUtilsTest {
     fun test_dateToString() {
 
     }
+
+    @Test
+    @DisplayName("isNull 메소드 테스트")
+    fun test_isNull() {
+        assertTrue(DateUtils.isNull(null))
+    }
 }

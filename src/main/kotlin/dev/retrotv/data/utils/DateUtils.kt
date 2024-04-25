@@ -150,6 +150,9 @@ object DateUtils {
         val dateFormat = SimpleDateFormat(format)
         return dateFormat.format(date)
     }
+
+    @JvmStatic
+    fun isNull(date: Date?): Boolean = date == null
 }
 
 private const val NOT_VALID_DATE = "date가 유효한 일자가 아닙니다."
