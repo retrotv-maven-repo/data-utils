@@ -68,7 +68,7 @@ object ByteUtils {
      * @return 조합된 ByteArray(byte[])
      */
     @JvmStatic
-    fun combineByteArray(vararg byteArrays: ByteArray): ByteArray {
+    fun combineByteArrays(vararg byteArrays: ByteArray): ByteArray {
         val arraySize = byteArrays.size
         require(arraySize > 1) { "인수로 들어오는 byte 배열의 개수는 2개 이상이어야 합니다." }
 
