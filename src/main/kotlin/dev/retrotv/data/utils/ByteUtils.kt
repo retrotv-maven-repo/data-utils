@@ -62,12 +62,13 @@ object ByteUtils {
     fun isEmpty(data: ByteArray?): Boolean = isNull(data) || data?.size == 0
 
     /**
-     * ByteArray(byte[])를 조합하고 반환합니다.
+     * 인자로 받은 ByteArray(byte[])를 조합하고 반환합니다.
      *
      * @param byteArrays 조합할 ByteArray(byte[]) 집합
+     * @return 조합된 ByteArray(byte[])
      */
     @JvmStatic
-    fun combineByteArray(vararg byteArrays: ByteArray) {
+    fun combineByteArray(vararg byteArrays: ByteArray): ByteArray {
         val arraySize = byteArrays.size
         require(arraySize > 1) { "인수로 들어오는 byte 배열의 개수는 2개 이상이어야 합니다." }
 
@@ -80,5 +81,7 @@ object ByteUtils {
             System.arraycopy(it, 0, combinedByteArray, destPos, it.size)
             destPos += it.size
         }
+
+        return combinedByteArray
     }
 }
