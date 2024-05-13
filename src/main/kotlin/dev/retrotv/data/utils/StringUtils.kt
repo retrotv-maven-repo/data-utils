@@ -270,6 +270,33 @@ object StringUtils {
     }
 
     /**
+     * 인자로 받은 문자열 집합을 조합하고 반환합니다.
+     *
+     * @param values 조합할 문자열 집합
+     * @return 조합된 문자열
+     */
+    @JvmStatic
+    fun combineStrings(vararg values: String): String {
+        val sb: StringBuilder = StringBuilder()
+        values.forEach { v -> sb.append(v) }
+        return sb.toString()
+    }
+
+    /**
+     * 인자로 받은 문자열 집합과 구분자를 순차적으로 조합하고 반환합니다.
+     *
+     * @param values 조합할 문자열 집합
+     * @param separator 구분자
+     * @return 조합된 문자열
+     */
+    @JvmStatic
+    fun combineStrings(vararg values: String, separator: Char): String {
+        val sb: StringBuilder = StringBuilder()
+        values.forEach { v -> sb.append(v).append(separator) }
+        return sb.toString().dropLast(1)
+    }
+
+    /**
      * 문자열이 null인지 확인합니다.
      *
      * @param value 문자열
