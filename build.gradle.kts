@@ -21,7 +21,7 @@ repositories {
     mavenCentral()
 }
 
-val apacheCommonCodec = "1.16.1"
+val apacheCommonCodec = "1.17.0"
 val junit = "5.10.2"
 
 dependencies {
