@@ -91,6 +91,33 @@ object NumberUtils {
 
         return gcmValue!!
     }
+
+    /**
+     * 객체가 null인지 확인합니다.
+     *
+     * @param value null 여부를 확인할 Int 객체
+     * @return null 여부
+     */
+    @JvmStatic
+    fun isNull(value: Int?): Boolean = value == null
+
+    /**
+     * 객체가 null인지 확인합니다.
+     *
+     * @param value null 여부를 확인할 Long 객체
+     * @return null 여부
+     */
+    @JvmStatic
+    fun isNull(value: Long?): Boolean = value == null
+
+    /**
+     * 객체가 null인지 확인합니다.
+     *
+     * @param value null 여부를 확인할 Double 객체
+     * @return null 여부
+     */
+    @JvmStatic
+    fun isNull(value: Double?): Boolean = value == null
 }
 
 private const val ARGUMENTS_CANT_LESS_THEN_TWO = "인자의 개수는 2보다 작을 수 없습니다."
