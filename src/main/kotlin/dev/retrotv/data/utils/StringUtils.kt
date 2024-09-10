@@ -11,7 +11,8 @@ import java.nio.charset.Charset
 import java.security.SecureRandom
 import java.text.DecimalFormat
 
-object StringUtils {
+@SuppressWarnings("kotlin:S1874")
+object StringUtils : StringUtils() {
 
     /**
      * 문자열을 ByteArray(byte[])형태로 변환하고 반환합니다.
@@ -293,22 +294,4 @@ object StringUtils {
      */
     @JvmStatic
     fun isNull(value: CharSequence?): Boolean = value == null
-
-    /**
-     * 문자열이 null 혹은 빈 문자열인지 확인합니다.
-     *
-     * @param value 문자열
-     * @return null 혹은 빈 문자열 여부
-     */
-    @JvmStatic
-    fun isEmpty(value: CharSequence?): Boolean = StringUtils.isEmpty(value)
-
-    /**
-     * 문자열이 null, 빈 문자열 혹은 공백인지 확인합니다.
-     *
-     * @param value 문자열
-     * @return null, 빈 문자열 혹은 공백 여부
-     */
-    @JvmStatic
-    fun isBlank(value: CharSequence?): Boolean = StringUtils.isBlank(value)
 }

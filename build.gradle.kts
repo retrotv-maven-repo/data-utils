@@ -3,14 +3,14 @@ import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 plugins {
     java
     jacoco
-    kotlin("jvm") version "2.0.0"
+    kotlin("jvm") version "2.0.10"
     `maven-publish`
     id("org.jetbrains.dokka") version "1.9.20"
     id("org.sonarqube") version "4.0.0.2929"
 }
 
 group = "dev.retrotv"
-version = "0.16.0-alpha"
+version = "0.20.0-alpha"
 
 // Github Action 버전 출력용
 tasks.register("printVersionName") {
@@ -55,9 +55,8 @@ publishing {
     publications {
         create<MavenPublication>("maven") {
             groupId = project.group.toString()
-            artifactId = "data-utils"
+            artifactId = project.name
             version = project.version.toString()
-
             from(components["java"])
         }
     }
