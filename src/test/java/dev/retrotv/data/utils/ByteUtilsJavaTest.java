@@ -1,8 +1,12 @@
 package dev.retrotv.data.utils;
 
-public class ByteUtilsJavaTest {
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
-    public void test() {
-        ByteUtils.toString("".getBytes());
+class ByteUtilsJavaTest {
+
+    @Test
+    void test() {
+        Assertions.assertTrue(ByteUtils.toString("".getBytes()).isEmpty());
     }
 }
