@@ -10,7 +10,7 @@ plugins {
 }
 
 group = "dev.retrotv"
-version = "0.20.0-alpha"
+version = "0.21.0-alpha"
 
 // Github Action 버전 출력용
 tasks.register("printVersionName") {
@@ -30,12 +30,14 @@ repositories {
 val apacheCommonCodec = "1.17.1"
 val apacheCommonLang = "3.16.0"
 val apacheCommonCollections = "4.5.0-M2"
+val orgJson = "20240303"
 val junit = "5.10.2"
 
 dependencies {
     implementation("commons-codec:commons-codec:${apacheCommonCodec}")
     implementation("org.apache.commons:commons-lang3:${apacheCommonLang}")
     implementation("org.apache.commons:commons-collections4:${apacheCommonCollections}")
+    implementation("org.json:json:${orgJson}")
     implementation(kotlin("stdlib-jdk8"))
 
     testImplementation("org.junit.jupiter:junit-jupiter-params:${junit}")
