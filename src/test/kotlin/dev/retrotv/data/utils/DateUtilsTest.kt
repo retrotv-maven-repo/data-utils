@@ -99,13 +99,19 @@ class DateUtilsTest {
     @Test
     @DisplayName("dateToString 메소드 테스트")
     fun test_dateToString() {
-        val date1 = DateUtils.stringToDate("2023-12-31", "yyyy-MM-dd")
+        var date1 = DateUtils.stringToDate("2023-12-31", "yyyy-MM-dd")
+        assertEquals("2023-12-31", DateUtils.dateToString(date1, "yyyy-MM-dd"))
+        date1 = DateUtils.stringToDate("20231231")
         assertEquals("2023-12-31", DateUtils.dateToString(date1, "yyyy-MM-dd"))
 
-        val date2 = DateUtils.stringToLocalDate("2023-12-31", "yyyy-MM-dd")
+        var date2 = DateUtils.stringToLocalDate("2023-12-31", "yyyy-MM-dd")
+        assertEquals("2023-12-31", DateUtils.dateToString(date2, "yyyy-MM-dd"))
+        date2 = DateUtils.stringToLocalDate("20231231")
         assertEquals("2023-12-31", DateUtils.dateToString(date2, "yyyy-MM-dd"))
 
-        val date3 = DateUtils.stringToLocalDateTime("2023-12-31 11:11:11", "yyyy-MM-dd HH:mm:ss")
+        var date3 = DateUtils.stringToLocalDateTime("2023-12-31 11:11:11", "yyyy-MM-dd HH:mm:ss")
+        assertEquals("2023-12-31 11:11:11", DateUtils.dateToString(date3, "yyyy-MM-dd HH:mm:ss"))
+        date3 = DateUtils.stringToLocalDateTime("20231231 11:11:11")
         assertEquals("2023-12-31 11:11:11", DateUtils.dateToString(date3, "yyyy-MM-dd HH:mm:ss"))
     }
 
