@@ -129,4 +129,28 @@ class StringUtilsTest {
         returnValue = StringUtils.combineStrings("Hello", "World", separator = '.')
         assertEquals("Hello.World", returnValue)
     }
+
+    @Test
+    @DisplayName("isNull 메소드 테스트")
+    fun test_isNull_method() {
+        assertTrue(StringUtils.isNull(null))
+        assertFalse(StringUtils.isNull("Hello, World!"))
+    }
+
+    @Test
+    @DisplayName("isEmpty 메소드 테스트")
+    fun test_isEmpty_method() {
+        assertTrue(StringUtils.isEmpty(null))
+        assertTrue(StringUtils.isEmpty(""))
+        assertFalse(StringUtils.isEmpty("Hello, World!"))
+    }
+
+    @Test
+    @DisplayName("isBlank 메소드 테스트")
+    fun test_isBlank_method() {
+        assertTrue(StringUtils.isBlank(null))
+        assertTrue(StringUtils.isBlank(""))
+        assertTrue(StringUtils.isBlank(" "))
+        assertFalse(StringUtils.isBlank("Hello, World!"))
+    }
 }

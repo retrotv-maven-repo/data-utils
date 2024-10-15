@@ -10,7 +10,7 @@ plugins {
 }
 
 group = "dev.retrotv"
-version = "0.20.2-alpha"
+version = "0.20.3-alpha"
 
 // Github Action 버전 출력용
 tasks.register("printVersionName") {
