@@ -1,8 +1,6 @@
 package dev.retrotv.data.utils
 
-import org.junit.jupiter.api.Assertions.assertThrows
 import org.junit.jupiter.api.DisplayName
-import java.text.ParseException
 import kotlin.test.Test
 import kotlin.test.*
 
@@ -59,13 +57,56 @@ class DateUtilsTest {
     @Test
     @DisplayName("stringToDate 메소드 테스트")
     fun test_stringToDate() {
+        var date = DateUtils.stringToDate("2023-12-31", "yyyy-MM-dd")
+        assertEquals(2023, date.year + 1900)
+        assertEquals(11, date.month)
+        assertEquals(31, date.date)
 
+        date = DateUtils.stringToDate("20231231")
+        assertEquals(2023, date.year + 1900)
+        assertEquals(11, date.month)
+        assertEquals(31, date.date)
+    }
+
+    @Test
+    @DisplayName("stringToLocalDate 메소드 테스트")
+    fun test_stringToLocalDate() {
+        var date = DateUtils.stringToLocalDate("2023-12-31", "yyyy-MM-dd")
+        assertEquals(2023, date.year)
+        assertEquals(12, date.monthValue)
+        assertEquals(31, date.dayOfMonth)
+
+        date = DateUtils.stringToLocalDate("20231231")
+        assertEquals(2023, date.year)
+        assertEquals(12, date.monthValue)
+        assertEquals(31, date.dayOfMonth)
+    }
+
+    @Test
+    @DisplayName("stringToLocalDateTime 메소드 테스트")
+    fun test_stringToLocalDateTime() {
+        var date = DateUtils.stringToLocalDateTime("2023-12-31 11:11:11", "yyyy-MM-dd HH:mm:ss")
+        assertEquals(2023, date.year)
+        assertEquals(12, date.monthValue)
+        assertEquals(31, date.dayOfMonth)
+
+        date = DateUtils.stringToLocalDateTime("20231231 11:11:11")
+        assertEquals(2023, date.year)
+        assertEquals(12, date.monthValue)
+        assertEquals(31, date.dayOfMonth)
     }
 
     @Test
     @DisplayName("dateToString 메소드 테스트")
     fun test_dateToString() {
+        val date1 = DateUtils.stringToDate("2023-12-31", "yyyy-MM-dd")
+        assertEquals("2023-12-31", DateUtils.dateToString(date1, "yyyy-MM-dd"))
 
+        val date2 = DateUtils.stringToLocalDate("2023-12-31", "yyyy-MM-dd")
+        assertEquals("2023-12-31", DateUtils.dateToString(date2, "yyyy-MM-dd"))
+
+        val date3 = DateUtils.stringToLocalDateTime("2023-12-31 11:11:11", "yyyy-MM-dd HH:mm:ss")
+        assertEquals("2023-12-31 11:11:11", DateUtils.dateToString(date3, "yyyy-MM-dd HH:mm:ss"))
     }
 
     @Test
