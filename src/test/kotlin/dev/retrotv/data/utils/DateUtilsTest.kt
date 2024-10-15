@@ -103,16 +103,19 @@ class DateUtilsTest {
         assertEquals("2023-12-31", DateUtils.dateToString(date1, "yyyy-MM-dd"))
         date1 = DateUtils.stringToDate("20231231")
         assertEquals("2023-12-31", DateUtils.dateToString(date1, "yyyy-MM-dd"))
+        assertEquals("20231231", DateUtils.dateToString(date1))
 
         var date2 = DateUtils.stringToLocalDate("2023-12-31", "yyyy-MM-dd")
         assertEquals("2023-12-31", DateUtils.dateToString(date2, "yyyy-MM-dd"))
         date2 = DateUtils.stringToLocalDate("20231231")
         assertEquals("2023-12-31", DateUtils.dateToString(date2, "yyyy-MM-dd"))
+        assertEquals("20231231", DateUtils.dateToString(date2))
 
         var date3 = DateUtils.stringToLocalDateTime("2023-12-31 11:11:11", "yyyy-MM-dd HH:mm:ss")
         assertEquals("2023-12-31 11:11:11", DateUtils.dateToString(date3, "yyyy-MM-dd HH:mm:ss"))
         date3 = DateUtils.stringToLocalDateTime("20231231 11:11:11")
         assertEquals("2023-12-31 11:11:11", DateUtils.dateToString(date3, "yyyy-MM-dd HH:mm:ss"))
+        assertEquals("20231231 11:11:11", DateUtils.dateToString(date3))
     }
 
     @Test

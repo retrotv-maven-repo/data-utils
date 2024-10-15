@@ -177,7 +177,7 @@ object DateUtils {
 
     @JvmStatic
     @JvmOverloads
-    fun dateToString(date: LocalDateTime, format: String = "yyyyMMdd"): String {
+    fun dateToString(date: LocalDateTime, format: String = "yyyyMMdd HH:mm:ss"): String {
         val formatter = DateTimeFormatter.ofPattern(format)
         return date.format(formatter)
     }
