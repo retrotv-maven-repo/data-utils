@@ -4,7 +4,6 @@ import dev.retrotv.data.enums.OperatingSystem
 import org.apache.commons.codec.DecoderException
 import org.apache.commons.codec.binary.Base64
 import org.apache.commons.codec.binary.Hex
-import org.apache.commons.lang3.StringUtils
 import org.apache.commons.codec.binary.StringUtils as CodecStringUtils
 import java.math.RoundingMode
 import java.nio.charset.Charset
@@ -12,7 +11,7 @@ import java.security.SecureRandom
 import java.text.DecimalFormat
 
 @SuppressWarnings("kotlin:S1874")
-object StringUtils : StringUtils() {
+object StringUtils {
 
     /**
      * 문자열을 ByteArray(byte[])형태로 변환하고 반환합니다.
@@ -285,13 +284,4 @@ object StringUtils : StringUtils() {
         values.forEach { v -> sb.append(v).append(separator) }
         return sb.toString().dropLast(1)
     }
-
-    /**
-     * 문자열이 null인지 확인합니다.
-     *
-     * @param value 문자열
-     * @return null 여부
-     */
-    @JvmStatic
-    fun isNull(value: CharSequence?): Boolean = value == null
 }

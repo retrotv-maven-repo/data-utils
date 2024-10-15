@@ -34,9 +34,9 @@ val orgJson = "20240303"
 val junit = "5.10.2"
 
 dependencies {
-    implementation("commons-codec:commons-codec:${apacheCommonCodec}")
-    implementation("org.apache.commons:commons-lang3:${apacheCommonLang}")
-    implementation("org.apache.commons:commons-collections4:${apacheCommonCollections}")
+    api("commons-codec:commons-codec:${apacheCommonCodec}")
+    api("org.apache.commons:commons-lang3:${apacheCommonLang}")
+    api("org.apache.commons:commons-collections4:${apacheCommonCollections}")
     implementation("org.json:json:${orgJson}")
     implementation(kotlin("stdlib-jdk8"))
 
