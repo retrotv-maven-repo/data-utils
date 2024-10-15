@@ -280,7 +280,7 @@ object StringUtils : StringUtils() {
      * @return 조합된 문자열
      */
     @JvmStatic
-    fun combineStrings(vararg values: String, separator: Char): String {
+    fun combineStrings(vararg values: String, separator: Char = ' '): String {
         val sb: StringBuilder = StringBuilder()
         values.forEach { v -> sb.append(v).append(separator) }
         return sb.toString().dropLast(1)

@@ -119,4 +119,14 @@ class StringUtilsTest {
     fun test_scrambleChars_method() {
         println(StringUtils.scrambleChars("Hello, World!"))
     }
+
+    @Test
+    @DisplayName("combineString 메소드 테스트")
+    fun test_combineString_method() {
+        var returnValue = StringUtils.combineStrings("Hello", "World")
+        assertEquals("Hello World", returnValue)
+
+        returnValue = StringUtils.combineStrings("Hello", "World", separator = '.')
+        assertEquals("Hello.World", returnValue)
+    }
 }
