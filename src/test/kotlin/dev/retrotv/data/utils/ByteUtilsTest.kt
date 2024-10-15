@@ -50,6 +50,6 @@ class ByteUtilsTest {
         byteArray3[2] = 0
         byteArray3[3] = 0
 
-        ByteUtils.combineByteArray(byteArray1, byteArray2, byteArray3)
+        ByteUtils.combineByteArrays(byteArray1, byteArray2, byteArray3)
     }
 }

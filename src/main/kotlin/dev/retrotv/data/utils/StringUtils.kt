@@ -4,12 +4,15 @@ import dev.retrotv.data.enums.OperatingSystem
 import org.apache.commons.codec.DecoderException
 import org.apache.commons.codec.binary.Base64
 import org.apache.commons.codec.binary.Hex
+import org.apache.commons.lang3.StringUtils
+import org.apache.commons.codec.binary.StringUtils as CodecStringUtils
 import java.math.RoundingMode
 import java.nio.charset.Charset
 import java.security.SecureRandom
 import java.text.DecimalFormat
 
-object StringUtils {
+@SuppressWarnings("kotlin:S1874")
+object StringUtils : StringUtils() {
 
     /**
      * 문자열을 ByteArray(byte[])형태로 변환하고 반환합니다.
@@ -28,7 +31,7 @@ object StringUtils {
      * @return 변환된 바이트 배열
      */
     @JvmStatic
-    fun toByteArray(value: String, charset: Charset): ByteArray = value.toByteArray(charset)
+    fun toByteArray(value: String, charset: Charset): ByteArray = CodecStringUtils.getBytesUnchecked(value, charset.name())
 
     /**
      * Hex 형식의 문자열을 ByteArray(byte[])형태로 변환하고 반환합니다.
@@ -270,6 +273,20 @@ object StringUtils {
     }
 
     /**
+     * 인자로 받은 문자열 집합과 구분자를 순차적으로 조합하고 반환합니다.
+     *
+     * @param values 조합할 문자열 집합
+     * @param separator 구분자
+     * @return 조합된 문자열
+     */
+    @JvmStatic
+    fun combineStrings(vararg values: String, separator: Char = ' '): String {
+        val sb: StringBuilder = StringBuilder()
+        values.forEach { v -> sb.append(v).append(separator) }
+        return sb.toString().dropLast(1)
+    }
+
+    /**
      * 문자열이 null인지 확인합니다.
      *
      * @param value 문자열
@@ -277,22 +294,4 @@ object StringUtils {
      */
     @JvmStatic
     fun isNull(value: CharSequence?): Boolean = value == null
-
-    /**
-     * 문자열이 null 혹은 빈 문자열인지 확인합니다.
-     *
-     * @param value 문자열
-     * @return null 혹은 빈 문자열 여부
-     */
-    @JvmStatic
-    fun isEmpty(value: CharSequence?): Boolean = value.isNullOrEmpty()
-
-    /**
-     * 문자열이 null, 빈 문자열 혹은 공백인지 확인합니다.
-     *
-     * @param value 문자열
-     * @return null, 빈 문자열 혹은 공백 여부
-     */
-    @JvmStatic
-    fun isBlank(value: CharSequence?): Boolean = value.isNullOrBlank()
 }

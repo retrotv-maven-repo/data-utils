@@ -2,6 +2,9 @@ package dev.retrotv.data.utils
 
 import java.text.ParseException
 import java.text.SimpleDateFormat
+import java.time.LocalDate
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
 import java.util.Calendar
 import java.util.Date
 
@@ -146,9 +149,37 @@ object DateUtils {
 
     @JvmStatic
     @JvmOverloads
+    fun stringToLocalDate(date: String, format: String = "yyyyMMdd"): LocalDate {
+        val formatter = DateTimeFormatter.ofPattern(format)
+        return LocalDate.parse(date, formatter)
+    }
+
+    @JvmStatic
+    @JvmOverloads
+    fun stringToLocalDateTime(date: String, format: String = "yyyyMMdd HH:mm:ss"): LocalDateTime {
+        val formatter = DateTimeFormatter.ofPattern(format)
+        return LocalDateTime.parse(date, formatter)
+    }
+
+    @JvmStatic
+    @JvmOverloads
     fun dateToString(date: Date, format: String = "yyyyMMdd"): String {
         val dateFormat = SimpleDateFormat(format)
         return dateFormat.format(date)
+    }
+
+    @JvmStatic
+    @JvmOverloads
+    fun dateToString(date: LocalDate, format: String = "yyyyMMdd"): String {
+        val formatter = DateTimeFormatter.ofPattern(format)
+        return date.format(formatter)
+    }
+
+    @JvmStatic
+    @JvmOverloads
+    fun dateToString(date: LocalDateTime, format: String = "yyyyMMdd HH:mm:ss"): String {
+        val formatter = DateTimeFormatter.ofPattern(format)
+        return date.format(formatter)
     }
 
     @JvmStatic
