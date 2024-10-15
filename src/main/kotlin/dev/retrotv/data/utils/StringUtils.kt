@@ -12,7 +12,7 @@ import java.security.SecureRandom
 import java.text.DecimalFormat
 
 @SuppressWarnings("kotlin:S1874")
-object StringUtils : StringUtils() {
+object StringUtils {
 
     /**
      * 문자열을 ByteArray(byte[])형태로 변환하고 반환합니다.
@@ -285,4 +285,13 @@ object StringUtils : StringUtils() {
         values.forEach { v -> sb.append(v).append(separator) }
         return sb.toString().dropLast(1)
     }
+
+    @JvmStatic
+    fun isNull(value: CharSequence?): Boolean = value == null
+
+    @JvmStatic
+    fun isEmpty(value: CharSequence?): Boolean = StringUtils.isEmpty(value)
+
+    @JvmStatic
+    fun isBlank(value: CharSequence?): Boolean = StringUtils.isBlank(value)
 }
