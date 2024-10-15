@@ -87,10 +87,10 @@ class StringUtilsTest {
     @Test
     @DisplayName("decimalToString(?, ?) 메소드 테스트")
     fun test_decimalToString_two_parameter_method() {
-        var returnValue = StringUtils.deciamlToString((1.0/3.0), "#.##")
+        var returnValue = StringUtils.decimalToString((1.0/3.0), "#.##")
         assertEquals("0.33", returnValue)
 
-        returnValue = StringUtils.deciamlToString((5.0/3.0), "#.##")
+        returnValue = StringUtils.decimalToString((5.0/3.0), "#.##")
         assertEquals("1.67", returnValue)
     }
 

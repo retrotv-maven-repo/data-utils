@@ -4,6 +4,7 @@ import dev.retrotv.data.enums.OperatingSystem
 import org.apache.commons.codec.DecoderException
 import org.apache.commons.codec.binary.Base64
 import org.apache.commons.codec.binary.Hex
+import org.apache.commons.lang3.StringUtils
 import org.apache.commons.codec.binary.StringUtils as CodecStringUtils
 import java.math.RoundingMode
 import java.nio.charset.Charset
@@ -11,7 +12,7 @@ import java.security.SecureRandom
 import java.text.DecimalFormat
 
 @SuppressWarnings("kotlin:S1874")
-object StringUtils {
+object StringUtils : StringUtils() {
 
     /**
      * 문자열을 ByteArray(byte[])형태로 변환하고 반환합니다.
@@ -209,7 +210,7 @@ object StringUtils {
      * @return 지정된 포맷으로 변환된 String 값
      */
     @JvmStatic
-    fun deciamlToString(value: Double, format: String): String {
+    fun decimalToString(value: Double, format: String): String {
         val df = DecimalFormat(format)
         df.roundingMode = RoundingMode.HALF_UP
         return df.format(value)
