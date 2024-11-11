@@ -11,7 +11,6 @@ import java.nio.charset.Charset
 import java.security.SecureRandom
 import java.text.DecimalFormat
 
-@SuppressWarnings("kotlin:S1874")
 object StringUtils {
 
     /**
