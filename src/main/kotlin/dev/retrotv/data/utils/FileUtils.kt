@@ -13,7 +13,7 @@ object FileUtils {
      *
      * @param file 읽어들일 파일
      * @return ByteArray(byte[])형으로 변환된 데이터
-     * @throws IOException 파일을 읽을 수 없으면 던져짐
+     * @throws IOException 파일을 읽어들이는 과정에서 오류가 발생하면 던져짐
      * @throws InvalidPathException 파일 인스턴스로부터 Path 객체를 생성할 수 없으면 던져짐
      * @throws SecurityException 파일 및 디렉터리 접근 권한이 없으면 던져짐
      */
