@@ -11,7 +11,7 @@ plugins {
 }
 
 group = "dev.retrotv"
-version = "0.21.5-alpha"
+version = "0.21.6-alpha"
 
 // Github Action 버전 출력용
 tasks.register("printVersionName") {
@@ -60,8 +60,8 @@ publishing {
             name = "GitHubPackages"
             url = URI("https://maven.pkg.github.com/retrotv-maven-repo/data-utils")
             credentials {
-                username = System.getenv("GITHUB_ACTOR")
-                password = System.getenv("GITHUB_TOKEN")
+                username = System.getenv("USERNAME")
+                password = System.getenv("PASSWORD")
             }
         }
     }
