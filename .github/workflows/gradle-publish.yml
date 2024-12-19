@@ -13,12 +13,12 @@ on:
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
+    
     permissions:
       contents: read
       packages: write
-
+      
     steps:
     - uses: actions/checkout@v4
     - name: Set up JDK 8
@@ -40,5 +40,5 @@ jobs:
     - name: Publish to GitHub Packages
       run: ./gradlew publish
       env:
-        USERNAME: ${{ github.actor }}
-        TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        USERNAME: ${{ secrets.USERNAME }}
+        PASSWORD: ${{ secrets.PACKAGE_TOKEN }}
