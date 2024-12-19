@@ -1,4 +1,5 @@
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+import java.net.URI
 
 plugins {
     java
@@ -10,7 +11,7 @@ plugins {
 }
 
 group = "dev.retrotv"
-version = "0.21.2-alpha"
+version = "0.21.5-alpha"
 
 // Github Action 버전 출력용
 tasks.register("printVersionName") {
@@ -31,7 +32,7 @@ val apacheCommonCodec = "1.17.1"
 val apacheCommonLang = "3.16.0"
 val apacheCommonCollections = "4.5.0-M2"
 val orgJson = "20240303"
-val junit = "5.10.2"
+val junit = "5.11.2"
 
 dependencies {
     implementation("commons-codec:commons-codec:${apacheCommonCodec}")
@@ -54,7 +55,25 @@ tasks {
 }
 
 publishing {
+    repositories {
+        maven {
+            name = "GitHubPackages"
+            url = URI("https://maven.pkg.github.com/retrotv-maven-repo/data-utils")
+            credentials {
+                username = System.getenv("GITHUB_ACTOR")
+                password = System.getenv("GITHUB_TOKEN")
+            }
+        }
+    }
+
     publications {
+        create<MavenPublication>("release") {
+            groupId = project.group.toString()
+            artifactId = project.name
+            version = project.version.toString()
+            from(components["java"])
+        }
+
         create<MavenPublication>("maven") {
             groupId = project.group.toString()
             artifactId = project.name
