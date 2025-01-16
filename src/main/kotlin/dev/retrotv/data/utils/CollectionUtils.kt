@@ -39,7 +39,7 @@ object CollectionUtils {
      */
     @JvmStatic
     fun <T> isDuplicated(values: List<T>): Boolean {
-        val newValues = values.toSet().toMutableList()
+        val newValues = listOf(values.toSet())
         return values.size != newValues.size
     }
 }

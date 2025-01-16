@@ -11,6 +11,19 @@ import java.util.*
 class StringUtilsTest {
 
     @Test
+    @DisplayName("hexToBase64 메소드 테스트")
+    fun test_hexStringToByteArray_method() {
+        val message = "The Quick Brown Fox Jumps Over The Lazy Dog"
+        val hexString = ByteUtils.toHexString(StringUtils.toByteArray(message))
+        val base64String = ByteUtils.toBase64String(StringUtils.toByteArray(message))
+
+        assertEquals(hexString, StringUtils.base64ToHex(base64String))
+        assertEquals(base64String, StringUtils.hexToBase64(hexString))
+    }
+
+
+
+    @Test
     @DisplayName("addNewLine(?) 메소드 테스트")
     fun test_addNewLine_method1() {
         val os = System.getProperty("os.name").lowercase(Locale.getDefault())
@@ -80,8 +93,11 @@ class StringUtilsTest {
     @Test
     @DisplayName("masking 메소드 테스트")
     fun test_masking_method() {
-        val returnValue = StringUtils.masking("123456-1234567", '#', 8, 13)
+        var returnValue = StringUtils.masking("123456-1234567", '#', 8, 13)
         assertEquals("123456-1######", returnValue)
+
+        returnValue = StringUtils.masking("123456-1234567", '#')
+        assertEquals("##############", returnValue)
     }
 
     @Test
@@ -152,5 +168,37 @@ class StringUtilsTest {
         assertTrue(StringUtils.isBlank(""))
         assertTrue(StringUtils.isBlank(" "))
         assertFalse(StringUtils.isBlank("Hello, World!"))
+    }
+
+    @Test
+    @DisplayName("trim 메소드 테스트")
+    fun test_trim_method() {
+        var returnValue = StringUtils.trim(" Hello, World! ")
+        assertEquals("Hello, World!", returnValue)
+
+        returnValue = StringUtils.trim("Hello, World!")
+        assertEquals("Hello, World!", returnValue)
+
+        returnValue = StringUtils.trim(null)
+        assertNull(returnValue)
+
+        returnValue = StringUtils.trim(null, false)
+        assertEquals("", returnValue)
+    }
+
+    @Test
+    @DisplayName("strip 메소드 테스트")
+    fun test_strip_method() {
+        var returnValue = StringUtils.strip(" Hello, World! ")
+        assertEquals("Hello, World!", returnValue)
+
+        returnValue = StringUtils.strip("Hello, World!")
+        assertEquals("Hello, World!", returnValue)
+
+        returnValue = StringUtils.strip(null)
+        assertNull(returnValue)
+
+        returnValue = StringUtils.strip(null, false)
+        assertEquals("", returnValue)
     }
 }
