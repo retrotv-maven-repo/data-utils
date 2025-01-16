@@ -41,7 +41,7 @@ object StringUtils {
      */
     @JvmStatic
     @Throws(DecoderException::class)
-    fun hexStringToByteArray(hex: String): ByteArray = Hex.decodeHex(hex)
+    fun hexToByteArray(hex: String): ByteArray = Hex.decodeHex(hex)
 
     /**
      * Base64 형식의 문자열을 ByteArray(byte[])형태로 변환하고 반환합니다.
@@ -50,7 +50,32 @@ object StringUtils {
      * @return 변환된 바이트 배열
      */
     @JvmStatic
-    fun base64StringToByteArray(base64: String): ByteArray = Base64.decodeBase64(base64)
+    fun base64ToByteArray(base64: String): ByteArray = Base64.decodeBase64(base64)
+
+    /**
+     * Hex 형식의 문자열을 Base64 형식의 문자열로 변환하고 반환합니다.
+     *
+     * @param hex Hex 형식의 문자열
+     * @return 변환된 Base64 형식의 문자열
+     */
+    @JvmStatic
+    @Throws(DecoderException::class)
+    fun hexToBase64(hex: String): String {
+        val bytes = hexToByteArray(hex)
+        return Base64.encodeBase64String(bytes)
+    }
+
+    /**
+     * Base64 형식의 문자열을 Hex 형식의 문자열로 변환하고 반환합니다.
+     *
+     * @param base64 Base64 형식의 문자열
+     * @return 변환된 Hex 형식의 문자열
+     */
+    @JvmStatic
+    fun base64ToHex(base64: String): String {
+        val bytes = base64ToByteArray(base64)
+        return Hex.encodeHexString(bytes)
+    }
 
     /**
      * <pre>
@@ -97,8 +122,7 @@ object StringUtils {
      * @return 개행문자가 제거된 문자열
      */
     @JvmStatic
-    fun removeNewLine(value: String): String = value.replace("\r", "")
-        .replace("\n", "")
+    fun removeNewLine(value: String): String = value.replace("\r", "").replace("\n", "")
 
     /**
      * <pre>
@@ -185,10 +209,12 @@ object StringUtils {
      * @return 마스킹 된 문자열
      */
     @JvmStatic
-    fun masking(value: String,
-                maskChar: Char,
-                start: Int = 0,
-                end: Int = value.toCharArray().size - 1): String {
+    fun masking(
+        value: String,
+        maskChar: Char,
+        start: Int = 0,
+        end: Int = value.toCharArray().size - 1
+    ): String {
         require(start <= end) { "end 값이 start보다 크거나 같을 수 없습니다" }
 
         val arr = value.toCharArray()
@@ -285,12 +311,96 @@ object StringUtils {
         return sb.toString().dropLast(1)
     }
 
+    /**
+     * 문자열이 null인지 확인하고 반환합니다.
+     * null -> true
+     * ""   -> false
+     * " "  -> false
+     *
+     * @param value 확인할 문자열
+     * @return 문자열이 null인 경우 true, 아닌 경우 false
+     */
     @JvmStatic
     fun isNull(value: CharSequence?): Boolean = value == null
 
+    /**
+     * 문자열이 null이거나 빈 문자열인지 확인하고 반환합니다.
+     * null -> true
+     * ""   -> true
+     * " "  -> false
+     *
+     * @param value 확인할 문자열
+     * @return 문자열이 null혹은 빈 문자열인 경우 true, 아닌 경우 false
+     */
     @JvmStatic
     fun isEmpty(value: CharSequence?): Boolean = StringUtils.isEmpty(value)
 
+    /**
+     * 문자열이 null, 빈 문자열 혹은 공백 문자열인지 확인하고 반환합니다.
+     * null    -> true
+     * ""      -> true
+     * " "     -> true
+     * "     " -> true
+     *
+     * @param value 확인할 문자열
+     * @return 문자열이 null, 빈 문자열 혹은 공백인 경우 true, 아닌 경우 false
+     */
     @JvmStatic
     fun isBlank(value: CharSequence?): Boolean = StringUtils.isBlank(value)
+
+    /**
+     * 문자열의 앞뒤 공백을 제거하고 반환합니다.
+     * \u0020 이하의 공백들만 제거됩니다.
+     *
+     * nullReturnNull이 true인 경우
+     * " Hello, World! " -> "Hello, World!"
+     * "               " -> ""
+     * null              -> null
+     *
+     * nullReturnNull이 false인 경우
+     * " Hello, World! " -> "Hello, World!"
+     * "               " -> ""
+     * null              -> ""
+     *
+     * @param value 공백을 제거할 문자열
+     * @param nullReturnNull value가 null로 들어올 경우 null로 반환할지에 대한 여부 (true: null 반환, false: "" 반환)
+     * @return 공백이 제거된 문자열
+     */
+    @JvmStatic
+    @JvmOverloads
+    fun trim(value: String?, nullReturnNull: Boolean = true): String? {
+        return if (nullReturnNull) {
+            StringUtils.trim(value)
+        } else {
+            StringUtils.trimToEmpty(value)
+        }
+    }
+
+    /**
+     * 문자열의 앞뒤 공백을 제거하고 반환합니다.
+     * 유니코드상에 존재하는 모든 공백문자를 제거합니다.
+     *
+     * nullReturnNull이 true인 경우
+     * " Hello, World! " -> "Hello, World!"
+     * "               " -> ""
+     * null              -> null
+     *
+     * nullReturnNull이 false인 경우
+     * " Hello, World! " -> "Hello, World!"
+     * "               " -> ""
+     * null              -> ""
+     *
+     * @param value 공백을 제거할 문자열
+     * @param nullReturnNull value가 null로 들어올 경우 null로 반환할지에 대한 여부 (true: null 반환, false: "" 반환)
+     * @return 공백이 제거된 문자열
+     */
+    @JvmStatic
+    @JvmOverloads
+    fun strip(value: String?, nullReturnNull: Boolean = true): String? {
+        return if (nullReturnNull) {
+            StringUtils.strip(value)
+        } else {
+            StringUtils.stripToEmpty(value)
+        }
+    }
 }

@@ -4,14 +4,14 @@ import java.net.URI
 plugins {
     java
     jacoco
-    kotlin("jvm") version "2.0.10"
+    kotlin("jvm") version "2.1.0"
     `maven-publish`
-    id("org.jetbrains.dokka") version "1.9.20"
+    id("org.jetbrains.dokka") version "2.0.0"
     id("org.sonarqube") version "4.0.0.2929"
 }
 
 group = "dev.retrotv"
-version = "0.21.6-alpha"
+version = "0.22.0-alpha"
 
 // Github Action 버전 출력용
 tasks.register("printVersionName") {
@@ -28,16 +28,18 @@ repositories {
     mavenCentral()
 }
 
-val apacheCommonCodec = "1.17.1"
-val apacheCommonLang = "3.16.0"
-val apacheCommonCollections = "4.5.0-M2"
-val orgJson = "20240303"
-val junit = "5.11.2"
+val apacheCommonsText = "1.13.0"
+val apacheCommonsCodec = "1.17.2"
+val apacheCommonsLang = "3.17.0"
+val apacheCommonsCollections = "4.5.0-M3"
+val orgJson = "20250107"
+val junit = "5.11.4"
 
 dependencies {
-    implementation("commons-codec:commons-codec:${apacheCommonCodec}")
-    implementation("org.apache.commons:commons-lang3:${apacheCommonLang}")
-    implementation("org.apache.commons:commons-collections4:${apacheCommonCollections}")
+    implementation("org.apache.commons:commons-text:${apacheCommonsText}")
+    implementation("commons-codec:commons-codec:${apacheCommonsCodec}")
+    implementation("org.apache.commons:commons-lang3:${apacheCommonsLang}")
+    implementation("org.apache.commons:commons-collections4:${apacheCommonsCollections}")
     implementation("org.json:json:${orgJson}")
     implementation(kotlin("stdlib-jdk8"))
 
@@ -80,28 +82,5 @@ kotlin {
     jvmToolchain(8)
 }
 
-tasks.test {
-    useJUnitPlatform()
-    finalizedBy("jacocoTestReport")
-}
-
-tasks.jacocoTestReport {
-    reports {
-
-        // HTML 파일을 생성하도록 설정
-        html.required = true
-
-        // SonarQube에서 Jacoco XML 파일을 읽을 수 있도록 설정
-        xml.required = true
-        csv.required = false
-    }
-}
-
-sonar {
-    properties {
-        property("sonar.projectKey", "retrotv-maven-repo_data-utils")
-        property("sonar.organization", "retrotv-maven-repo")
-        property("sonar.host.url", "https://sonarcloud.io")
-        property("sonar.coverage.exclusions", "**/enums/*")
-    }
-}
+apply(from = "${rootDir}/gradle/sonarcloud.gradle")
+apply(from = "${rootDir}/gradle/jacoco.gradle")
