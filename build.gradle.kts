@@ -1,17 +1,19 @@
+import com.vanniktech.maven.publish.SonatypeHost
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 import java.net.URI
 
 plugins {
     java
     jacoco
-    kotlin("jvm") version "2.1.0"
     `maven-publish`
+    kotlin("jvm") version "2.1.21"
+    id("com.vanniktech.maven.publish") version "0.32.0"
     id("org.jetbrains.dokka") version "2.0.0"
     id("org.sonarqube") version "4.0.0.2929"
 }
 
 group = "dev.retrotv"
-version = "0.22.0-alpha"
+version = "0.23.0-alpha"
 
 // Github Action 버전 출력용
 tasks.register("printVersionName") {
@@ -28,12 +30,12 @@ repositories {
     mavenCentral()
 }
 
-val apacheCommonsText = "1.13.0"
-val apacheCommonsCodec = "1.17.2"
+val apacheCommonsText = "1.13.1"
+val apacheCommonsCodec = "1.18.0"
 val apacheCommonsLang = "3.17.0"
-val apacheCommonsCollections = "4.5.0-M3"
-val orgJson = "20250107"
-val junit = "5.11.4"
+val apacheCommonsCollections = "4.5.0"
+val orgJson = "20250517"
+val junit = "5.13.1"
 
 dependencies {
     implementation("org.apache.commons:commons-text:${apacheCommonsText}")
@@ -56,24 +58,53 @@ tasks {
     }
 }
 
-publishing {
-    repositories {
-        maven {
-            name = "GitHubPackages"
-            url = URI("https://maven.pkg.github.com/retrotv-maven-repo/data-utils")
-            credentials {
-                username = System.getenv("USERNAME")
-                password = System.getenv("PASSWORD")
+mavenPublishing {
+    publishToMavenCentral(SonatypeHost.CENTRAL_PORTAL)
+
+    signAllPublications()
+
+    coordinates(group.toString(), project.name, version.toString())
+
+    pom {
+        name.set("data-utils")
+        description.set("Java 자료형과 관련된 유틸성 기능을 총망라한 라이브러리 입니다.")
+        inceptionYear.set("2025")
+        url.set("https://github.com/retrotv-maven-repo/data-utils")
+
+        licenses {
+            license {
+                name.set("The Apache License, Version 2.0")
+                url.set("https://www.apache.org/licenses/LICENSE-2.0.txt")
             }
+        }
+
+        developers {
+            developer {
+                id.set("yjj8353")
+                name.set("JaeJun Yang")
+                email.set("yjj8353@gmail.com")
+            }
+        }
+
+        scm {
+            connection.set("scm:git:git://github.com/retrotv-maven-repo/data-utils.git")
+            developerConnection.set("scm:git:ssh://github.com/retrotv-maven-repo/data-utils.git")
+            url.set("https://github.com/retrotv-maven-repo/data-utils.git")
         }
     }
 
-    publications {
-        create<MavenPublication>("maven") {
-            groupId = project.group.toString()
-            artifactId = project.name
-            version = project.version.toString()
-            from(components["java"])
+    publishing {
+        repositories {
+
+            // Github Packages에 배포하기 위한 설정
+            maven {
+                name = "GitHubPackages"
+                url = URI("https://maven.pkg.github.com/retrotv-maven-repo/data-utils")
+                credentials {
+                    username = System.getenv("USERNAME")
+                    password = System.getenv("PASSWORD")
+                }
+            }
         }
     }
 }
