@@ -122,7 +122,7 @@ object ValidUtils {
      */
     @JvmStatic
     fun isEmail(value: String): Boolean {
-        val re = Regex("^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}\$")
+        val re = Regex("^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$")
         return re.matches(value)
     }
 
@@ -138,7 +138,7 @@ object ValidUtils {
         // 서울
         return if (value.substring(0 until 2) == "02") {
             val cuttingNum = value.substring(2)
-            val re = Regex("^([-)])?\\d{3,4}-?\\d{4}\$")
+            val re = Regex("^([-)])?\\d{3,4}-?\\d{4}$")
             re.matches(cuttingNum)
 
             // 서울 외
@@ -146,12 +146,12 @@ object ValidUtils {
 
             // 지역 번호
             val areaNum = value.substring(0 until 3)
-            var re = Regex("^0(31|32|33|41|42|43|44|51|52|53|54|55|61|62|63|64)\$")
+            var re = Regex("^0(31|32|33|41|42|43|44|51|52|53|54|55|61|62|63|64)$")
 
             // 허용 된 지역 번호
             return if (re.matches(areaNum)) {
                 val cuttingNum = value.substring(3)
-                re = Regex("^([-)])?\\d{3,4}-?\\d{4}\$")
+                re = Regex("^([-)])?\\d{3,4}-?\\d{4}$")
                 re.matches(cuttingNum)
 
                 // 그 외
@@ -167,7 +167,7 @@ object ValidUtils {
      */
     @JvmStatic
     fun isCellPhoneNumber(value: String): Boolean {
-        val re = Regex("^01([016789])([-)])?\\d{3,4}-?\\d{4}\$")
+        val re = Regex("^01([016789])([-)])?\\d{3,4}-?\\d{4}$")
         return re.matches(value)
     }
 
