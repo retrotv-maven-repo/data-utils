@@ -42,7 +42,7 @@ val orgJson = "20250517"
 val junit = "5.13.1"
 
 dependencies {
-    implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
+    implementation("com.fasterxml.jackson.module:jackson-module-kotlin:2.19.0")
 
     implementation("org.apache.commons:commons-text:${apacheCommonsText}")
     implementation("commons-codec:commons-codec:${apacheCommonsCodec}")
