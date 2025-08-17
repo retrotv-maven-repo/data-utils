@@ -17,7 +17,7 @@ class ValidUtilsTest {
         assertFalse(ValidUtils.isDate("2023-02-29"))
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     @DisplayName("isIncludeEnglish 메소드 테스트")
     fun test_isIncludeEnglish_method() {
         var returnValue = ValidUtils.isIncludeEnglish("12가31b2나123354aslkwne1")
@@ -27,6 +27,7 @@ class ValidUtilsTest {
         assertFalse(returnValue)
     }
 
+    @Test
     @DisplayName("isEmail 메소드 테스트")
     fun test_isEmail_method() {
         var returnValue = ValidUtils.isEmail("aaaaaaa@naver.com")
@@ -39,7 +40,7 @@ class ValidUtilsTest {
         assertFalse(returnValue)
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     @DisplayName("isIncludeLowerCase 메소드 테스트")
     fun test_isIncludeLowerCase_method() {
         var returnValue = ValidUtils.isIncludeLowerCase("12가31b2나123354aslkwne1")
@@ -49,7 +50,7 @@ class ValidUtilsTest {
         assertFalse(returnValue)
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     @DisplayName("isIncludeUpperCase 메소드 테스트")
     fun test_isIncludeUpperCase_method() {
         var returnValue = ValidUtils.isIncludeUpperCase("12가31B2나123354ASDQEFG1")
@@ -59,7 +60,7 @@ class ValidUtilsTest {
         assertFalse(returnValue)
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     @DisplayName("isIncludeNumber 메소드 테스트")
     fun test_isIncludeNumber_method() {
         var returnValue = ValidUtils.isIncludeNumber("가31B2나123354ASDQEFG")
@@ -69,7 +70,7 @@ class ValidUtilsTest {
         assertFalse(returnValue)
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     @DisplayName("isIncludeSpecialCharacter 메소드 테스트")
     fun test_isIncludeSpecialCharacter_method() {
         var returnValue = ValidUtils.isIncludeSpecialCharacter("12가31b2!@#!나1233545asl&*)kwne1")
@@ -79,7 +80,7 @@ class ValidUtilsTest {
         assertFalse(returnValue)
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     @DisplayName("isIncludeKorean 메소드 테스트")
     fun test_isIncludeKorean_method() {
         var returnValue = ValidUtils.isIncludeKorean("b12가312나123354aslkwn!@#ee")
@@ -89,7 +90,7 @@ class ValidUtilsTest {
         assertFalse(returnValue)
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     @DisplayName("isPhone 메소드 테스트")
     fun test_isPhone_method() {
         var list = arrayOf(
@@ -293,7 +294,7 @@ class ValidUtilsTest {
         }
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     @DisplayName("isHomePhone 메소드 테스트")
     fun test_isHomePhone_method() {
         var list = arrayOf(
@@ -443,7 +444,7 @@ class ValidUtilsTest {
         list.forEach { number -> assertFalse(ValidUtils.isHomePhoneNumber(number)) }
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     @DisplayName("isCellPhone 메소드 테스트")
     fun test_isCellPhone_method() {
         var list = arrayOf(

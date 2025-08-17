@@ -13,7 +13,11 @@ plugins {
 }
 
 group = "dev.retrotv"
-version = "0.23.2-alpha"
+version = "0.23.3-alpha"
+
+tasks.withType(JavaCompile::class){
+    options.encoding = "UTF-8"
+}
 
 // Github Action 버전 출력용
 tasks.register("printVersionName") {
@@ -30,9 +34,9 @@ repositories {
     mavenCentral()
 }
 
-val apacheCommonsText = "1.13.1"
+val apacheCommonsText = "1.14.0"
 val apacheCommonsCodec = "1.18.0"
-val apacheCommonsLang = "3.17.0"
+val apacheCommonsLang = "3.18.0"
 val apacheCommonsCollections = "4.5.0"
 val orgJson = "20250517"
 val junit = "5.13.1"
