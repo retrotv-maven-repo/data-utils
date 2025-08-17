@@ -42,6 +42,10 @@ val orgJson = "20250517"
 val junit = "5.13.1"
 
 dependencies {
+    configurations.all {
+        exclude(group = "com.fasterxml.jackson.module", module = "jackson-module-kotlin")
+    }
+
     implementation("org.apache.commons:commons-text:${apacheCommonsText}")
     implementation("commons-codec:commons-codec:${apacheCommonsCodec}")
     implementation("org.apache.commons:commons-lang3:${apacheCommonsLang}")
