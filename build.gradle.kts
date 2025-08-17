@@ -41,11 +41,11 @@ val apacheCommonsCollections = "4.5.0"
 val orgJson = "20250517"
 val junit = "5.13.1"
 
-dependencies {
-    configurations.all {
-        exclude(group = "com.fasterxml.jackson.module", module = "jackson-module-kotlin")
-    }
+configurations.runtimeClasspath {
+    exclude(group = "com.fasterxml.jackson.module", module = "jackson-module-kotlin")
+}
 
+dependencies {
     implementation("org.apache.commons:commons-text:${apacheCommonsText}")
     implementation("commons-codec:commons-codec:${apacheCommonsCodec}")
     implementation("org.apache.commons:commons-lang3:${apacheCommonsLang}")
