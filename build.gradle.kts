@@ -13,7 +13,7 @@ plugins {
 }
 
 group = "dev.retrotv"
-version = "0.23.3-alpha"
+version = "0.23.4-alpha"
 
 tasks.withType(JavaCompile::class){
     options.encoding = "UTF-8"
@@ -42,6 +42,10 @@ val orgJson = "20250517"
 val junit = "5.13.1"
 
 dependencies {
+    configurations.all {
+        exclude(group = "com.fasterxml.jackson.module", module = "jackson-module-kotlin")
+    }
+
     implementation("org.apache.commons:commons-text:${apacheCommonsText}")
     implementation("commons-codec:commons-codec:${apacheCommonsCodec}")
     implementation("org.apache.commons:commons-lang3:${apacheCommonsLang}")
