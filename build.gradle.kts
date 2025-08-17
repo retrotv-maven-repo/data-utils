@@ -13,11 +13,7 @@ plugins {
 }
 
 group = "dev.retrotv"
-version = "0.23.6-alpha"
-
-tasks.withType(JavaCompile::class) {
-    options.encoding = "UTF-8"
-}
+version = "0.23.7-alpha"
 
 // Github Action 버전 출력용
 tasks.register("printVersionName") {
@@ -34,16 +30,14 @@ repositories {
     mavenCentral()
 }
 
-val apacheCommonsText = "1.14.0"
+val apacheCommonsText = "1.13.1"
 val apacheCommonsCodec = "1.18.0"
-val apacheCommonsLang = "3.18.0"
+val apacheCommonsLang = "3.17.0"
 val apacheCommonsCollections = "4.5.0"
 val orgJson = "20250517"
 val junit = "5.13.1"
 
 dependencies {
-    implementation("com.fasterxml.jackson.module:jackson-module-kotlin:2.19.0")
-
     implementation("org.apache.commons:commons-text:${apacheCommonsText}")
     implementation("commons-codec:commons-codec:${apacheCommonsCodec}")
     implementation("org.apache.commons:commons-lang3:${apacheCommonsLang}")
