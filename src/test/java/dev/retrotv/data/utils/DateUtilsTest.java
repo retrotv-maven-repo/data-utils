@@ -31,6 +31,11 @@ class DateUtilsTest {
         assertFalse(DateUtils.isLeapYear("2200"));
         assertFalse(DateUtils.isLeapYear(2100));
         assertFalse(DateUtils.isLeapYear("2100"));
+
+        assertThrows(IllegalArgumentException.class, () -> DateUtils.isLeapYear("-1"));
+        assertThrows(IllegalArgumentException.class, () -> DateUtils.isLeapYear(-1));
+        assertThrows(IllegalArgumentException.class, () -> DateUtils.isLeapYear("10000"));
+        assertThrows(IllegalArgumentException.class, () -> DateUtils.isLeapYear(10000));
     }
 
     @Test
@@ -44,6 +49,11 @@ class DateUtilsTest {
         assertEquals("30", DateUtils.getLastDay("2023", "04"));
         assertEquals("28", DateUtils.getLastDay("2023", "2"));
         assertEquals("29", DateUtils.getLastDay("2024", "2"));
+
+        assertThrows(IllegalArgumentException.class, () -> DateUtils.getLastDay(null, 2));
+        assertThrows(IllegalArgumentException.class, () -> DateUtils.getLastDay(2023, 0));
+        assertThrows(IllegalArgumentException.class, () -> DateUtils.getLastDay(null, "2"));
+        assertThrows(IllegalArgumentException.class, () -> DateUtils.getLastDay("2023", "0"));
     }
 
     @Test
@@ -58,6 +68,10 @@ class DateUtilsTest {
 
         assertEquals("20241231", DateUtils.addYMD("20231231", 1, null, null, "yyyyMMdd"));
         assertEquals("2024-12-31", DateUtils.addYMD("2023-12-31", 1, null, null, "yyyy-MM-dd"));
+
+        assertThrows(ParseException.class, () -> DateUtils.addYMD("202312310000", 1, null, null, "yyyy-MM-dd"));
+        assertThrows(ParseException.class, () -> DateUtils.addYMD("202312310000", 1, null, null, "yyyy*MM*dd"));
+        assertThrows(ParseException.class, () -> DateUtils.addYMD("abcdefgh", 1, null, null, "yyyyMMdd"));
     }
 
     @Test
