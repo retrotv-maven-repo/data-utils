@@ -1,5 +1,6 @@
 package dev.retrotv.data.utils;
 
+import lombok.NonNull;
 import org.apache.commons.validator.routines.EmailValidator;
 
 import java.util.regex.Pattern;
@@ -25,7 +26,7 @@ public final class ValidUtils {
      * @param value 검증할 문자열
      * @return 영문자 포함 여부
      */
-    public static boolean isIncludeEnglish(String value) {
+    public static boolean isIncludeEnglish(@NonNull String value) {
         return Pattern.compile("[a-zA-Z]").matcher(value).find();
     }
 
@@ -35,7 +36,7 @@ public final class ValidUtils {
      * @param value 검증할 문자열
      * @return 영소문자 포함 여부
      */
-    public static boolean isIncludeLowerCase(String value) {
+    public static boolean isIncludeLowerCase(@NonNull String value) {
         return Pattern.compile("[a-z]").matcher(value).find();
     }
 
@@ -45,7 +46,7 @@ public final class ValidUtils {
      * @param value 검증할 문자열
      * @return 영대문자 포함 여부
      */
-    public static boolean isIncludeUpperCase(String value) {
+    public static boolean isIncludeUpperCase(@NonNull String value) {
         return Pattern.compile("[A-Z]").matcher(value).find();
     }
 
@@ -55,7 +56,7 @@ public final class ValidUtils {
      * @param value 검증할 문자열
      * @return 숫자 포함 여부
      */
-    public static boolean isIncludeNumber(String value) {
+    public static boolean isIncludeNumber(@NonNull String value) {
         return Pattern.compile("\\d").matcher(value).find();
     }
 
@@ -65,7 +66,7 @@ public final class ValidUtils {
      * @param value 검증할 문자열
      * @return 특수문자 포함 여부
      */
-    public static boolean isIncludeSpecialCharacter(String value) {
+    public static boolean isIncludeSpecialCharacter(@NonNull String value) {
         return Pattern.compile("[^a-zA-Z0-9ㄱ-ㅎㅏ-ㅣ가-힣\\s]").matcher(value).find();
     }
 
@@ -75,7 +76,7 @@ public final class ValidUtils {
      * @param value 검증할 문자열
      * @return 한글 포함 여부
      */
-    public static boolean isIncludeKorean(String value) {
+    public static boolean isIncludeKorean(@NonNull String value) {
         return Pattern.compile("[ㄱ-ㅎㅏ-ㅣ가-힣]").matcher(value).find();
     }
 
@@ -85,7 +86,7 @@ public final class ValidUtils {
      * @param value 검증할 문자열
      * @return 유효한 날짜인지 검증 여부
      */
-    public static boolean isDate(String value) {
+    public static boolean isDate(@NonNull String value) {
         if (value.length() != 8 && value.length() != 10) {
             return false;
         }
@@ -125,7 +126,7 @@ public final class ValidUtils {
      * @param value 검증할 문자열
      * @return 이메일 형식 여부
      */
-    public static boolean isEmail(String value) {
+    public static boolean isEmail(@NonNull String value) {
         return EmailValidator.getInstance().isValid(value);
     }
 
@@ -135,7 +136,7 @@ public final class ValidUtils {
      * @param value 검증할 문자열
      * @return 유선 전화번호 형식 여부
      */
-    public static boolean isHomePhoneNumber(String value) {
+    public static boolean isHomePhoneNumber(@NonNull String value) {
         if (value.length() < 2) return false;
 
         // 서울
@@ -162,7 +163,7 @@ public final class ValidUtils {
      * @param value 검증할 문자열
      * @return 휴대 전화번호 형식 여부
      */
-    public static boolean isCellPhoneNumber(String value) {
+    public static boolean isCellPhoneNumber(@NonNull String value) {
         return Pattern.matches("^01([016789])([-)])?\\d{3,4}-?\\d{4}$", value);
     }
 
@@ -172,7 +173,7 @@ public final class ValidUtils {
      * @param value 검증할 문자열
      * @return 유선/휴대 전화번호 형식 여부
      */
-    public static boolean isPhoneNumber(String value) {
+    public static boolean isPhoneNumber(@NonNull String value) {
         return isHomePhoneNumber(value) || isCellPhoneNumber(value);
     }
 
