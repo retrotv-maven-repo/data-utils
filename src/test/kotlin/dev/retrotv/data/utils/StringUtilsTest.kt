@@ -66,16 +66,7 @@ class StringUtilsTest {
     @DisplayName("appendAll(?) 메소드 테스트")
     fun test_appendAll_array_parameter_method() {
         val arr = arrayOf("Hello", "World")
-        val returnValue = StringUtils.appendAll(values = arr)
-
-        assertNotEquals("Hello World", returnValue)
-        assertEquals("HelloWorld", returnValue)
-    }
-
-    @Test
-    @DisplayName("appendAll(?) 메소드 테스트")
-    fun test_appendAll_dynamic_parameter_method() {
-        val returnValue = StringUtils.appendAll("Hello", "World")
+        val returnValue = StringUtils.appendAll(arr)
 
         assertNotEquals("Hello World", returnValue)
         assertEquals("HelloWorld", returnValue)
@@ -84,7 +75,7 @@ class StringUtilsTest {
     @Test
     @DisplayName("appendAll(?, ?, ?) 메소드 테스트")
     fun test_appendAll_three_parameter_method() {
-        val returnValue = StringUtils.appendAll(values = arrayOf("Hello", "World"), delimiter = " ", useDelimiter = true)
+        val returnValue = StringUtils.appendAll(arrayOf("Hello", "World"), " ", true)
 
         assertNotEquals("HelloWorld", returnValue)
         assertEquals("Hello World", returnValue)
@@ -142,7 +133,8 @@ class StringUtilsTest {
         var returnValue = StringUtils.combineStrings("Hello", "World")
         assertEquals("Hello World", returnValue)
 
-        returnValue = StringUtils.combineStrings("Hello", "World", separator = '.')
+        val arr = arrayOf("Hello", "World")
+        returnValue = StringUtils.combineStrings(arr, '.')
         assertEquals("Hello.World", returnValue)
     }
 

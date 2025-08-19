@@ -10,20 +10,18 @@ class FileUtilsTest {
     @Test
     @DisplayName("isNull() 메서드 테스트")
     fun test_isNull_method() {
-        var file: File? = null
-        assertTrue(FileUtils.isNull(file))
+        assertTrue(FileUtils.isNull(null))
 
-        file = File("")
+        val file: File = File("")
         assertFalse(FileUtils.isNull(file))
     }
 
     @Test
     @DisplayName("isEmpty() 메서드 테스트")
     fun test_isEmpty_method() {
-        var file: File? = null
-        assertTrue(FileUtils.isEmpty(file))
+        assertTrue(FileUtils.isEmpty(null))
 
-        file = File("")
+        val file: File = File("")
         assertTrue(FileUtils.isEmpty(file))
     }
 }

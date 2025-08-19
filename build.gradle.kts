@@ -32,8 +32,9 @@ repositories {
 
 val apacheCommonsText = "1.13.1"
 val apacheCommonsCodec = "1.18.0"
-val apacheCommonsLang = "3.17.0"
+val apacheCommonsLang = "3.18.0"
 val apacheCommonsCollections = "4.5.0"
+val lombok = "1.18.38"
 val orgJson = "20250517"
 val junit = "5.13.1"
 
@@ -43,6 +44,9 @@ dependencies {
     implementation("org.apache.commons:commons-lang3:${apacheCommonsLang}")
     implementation("org.apache.commons:commons-collections4:${apacheCommonsCollections}")
     implementation("org.json:json:${orgJson}")
+
+    implementation("org.projectlombok:lombok:${lombok}")
+
     implementation(kotlin("stdlib-jdk8"))
 
     testImplementation("org.junit.jupiter:junit-jupiter-params:${junit}")
