@@ -1,19 +1,26 @@
 import com.vanniktech.maven.publish.SonatypeHost
-import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 import java.net.URI
 
 plugins {
-    java
-    jacoco
-    `maven-publish`
-    kotlin("jvm") version "2.1.21"
+    id("java")
+    id("jacoco")
+    id("maven-publish")
     id("com.vanniktech.maven.publish") version "0.32.0"
-    id("org.jetbrains.dokka") version "2.0.0"
     id("org.sonarqube") version "4.0.0.2929"
 }
 
+tasks.withType<JavaCompile> {
+    options.encoding = "UTF-8"
+}
+
+java {
+    toolchain {
+        languageVersion.set(JavaLanguageVersion.of(8))
+    }
+}
+
 group = "dev.retrotv"
-version = "0.23.7-alpha"
+version = "0.24.0-alpha"
 
 // Github Action 버전 출력용
 tasks.register("printVersionName") {
@@ -22,18 +29,16 @@ tasks.register("printVersionName") {
     println(project.version)
 }
 
-tasks.dokkaHtml {
-    outputDirectory.set(layout.buildDirectory.dir("documentation/html"))
-}
-
 repositories {
     mavenCentral()
 }
 
 val apacheCommonsText = "1.13.1"
 val apacheCommonsCodec = "1.18.0"
-val apacheCommonsLang = "3.17.0"
+val apacheCommonsLang = "3.18.0"
 val apacheCommonsCollections = "4.5.0"
+val apacheCommonsValidator = "1.10.0"
+val lombok = "1.18.38"
 val orgJson = "20250517"
 val junit = "5.13.1"
 
@@ -42,20 +47,15 @@ dependencies {
     implementation("commons-codec:commons-codec:${apacheCommonsCodec}")
     implementation("org.apache.commons:commons-lang3:${apacheCommonsLang}")
     implementation("org.apache.commons:commons-collections4:${apacheCommonsCollections}")
+    implementation("commons-validator:commons-validator:${apacheCommonsValidator}")
     implementation("org.json:json:${orgJson}")
-    implementation(kotlin("stdlib-jdk8"))
 
-    testImplementation("org.junit.jupiter:junit-jupiter-params:${junit}")
-    testImplementation(kotlin("test"))
-}
+    implementation("org.projectlombok:lombok:${lombok}")
 
-tasks {
-    compileKotlin {
-        compilerOptions.jvmTarget.set(JvmTarget.JVM_1_8)
-    }
-    compileTestKotlin {
-        compilerOptions.jvmTarget.set(JvmTarget.JVM_1_8)
-    }
+    // JUnit 5
+    testImplementation(platform("org.junit:junit-bom:${junit}"))
+    testImplementation("org.junit.jupiter:junit-jupiter")
+    testRuntimeOnly("org.junit.platform:junit-platform-launcher")
 }
 
 mavenPublishing {
@@ -115,10 +115,6 @@ tasks.withType<Sign>().configureEach {
         // 로컬 및 깃허브 패키지 배포 시에는 서명하지 않도록 설정
         !gradle.taskGraph.hasTask(":publishMavenPublicationToMavenLocal") && !gradle.taskGraph.hasTask(":publishMavenPublicationToGitHubPackagesRepository")
     }
-}
-
-kotlin {
-    jvmToolchain(8)
 }
 
 apply(from = "${rootDir}/gradle/sonarcloud.gradle")
