@@ -29,6 +29,6 @@ class PasswordUtilsTest {
         assertTrue(PasswordUtils.isInclude("This is password", true, false, false, false));
         assertTrue(PasswordUtils.isInclude("This is password", true, true, false, false));
         assertTrue(PasswordUtils.isInclude("This is Passw0rd", true, true, true, false));
-        assertFalse(PasswordUtils.isInclude("This !s Passw0rd", true, true, true, true));
+        assertTrue(PasswordUtils.isInclude("This !s Passw0rd", true, true, true, true));
     }
 }
