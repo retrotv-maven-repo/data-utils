@@ -69,14 +69,14 @@ class DateUtilsTest {
         assertEquals("20241231", DateUtils.addYMD("20231231", 1, null, null, "yyyyMMdd"));
         assertEquals("2024-12-31", DateUtils.addYMD("2023-12-31", 1, null, null, "yyyy-MM-dd"));
 
-        assertThrows(ParseException.class, () -> DateUtils.addYMD("202312310000", 1, null, null, "yyyy-MM-dd"));
-        assertThrows(ParseException.class, () -> DateUtils.addYMD("202312310000", 1, null, null, "yyyy*MM*dd"));
-        assertThrows(ParseException.class, () -> DateUtils.addYMD("abcdefgh", 1, null, null, "yyyyMMdd"));
+        assertThrows(IllegalArgumentException.class, () -> DateUtils.addYMD("202312310000", 1, null, null, "yyyy-MM-dd"));
+        assertThrows(ParseException.class, () -> DateUtils.addYMD("20231231", 1, null, null, "yyyy*MM*dd"));
+        assertThrows(IllegalArgumentException.class, () -> DateUtils.addYMD("abcdefgh", 1, null, null, "yyyyMMdd"));
     }
 
     @Test
     @DisplayName("stringToDate 메소드 테스트")
-    @SuppressWarnings("java:S1874")
+    @SuppressWarnings("java:S187")
     void test_stringToDate() throws ParseException {
         Date date = DateUtils.stringToDate("2023-12-31", "yyyy-MM-dd");
         assertEquals(2023, date.getYear() + 1900);
