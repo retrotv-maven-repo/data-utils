@@ -1,5 +1,7 @@
 package dev.retrotv.data.utils;
 
+import org.apache.commons.validator.routines.EmailValidator;
+
 import java.util.regex.Pattern;
 
 /**
@@ -54,7 +56,7 @@ public final class ValidUtils {
      * @return 숫자 포함 여부
      */
     public static boolean isIncludeNumber(String value) {
-        return Pattern.matches(".*[0-9]+.*", value);
+        return Pattern.matches(".*\\d+.*", value);
     }
 
     /**
@@ -109,8 +111,11 @@ public final class ValidUtils {
                     return day >= 1 && day <= 30;
                 case 2:
                     return DateUtils.isLeapYear(year) ? (day >= 1 && day <= 29) : (day >= 1 && day <= 28);
+                default:
+                    throw new IllegalArgumentException("잘못된 월: " + month);
             }
         }
+
         return false;
     }
 
@@ -121,7 +126,7 @@ public final class ValidUtils {
      * @return 이메일 형식 여부
      */
     public static boolean isEmail(String value) {
-        return Pattern.matches("^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$", value);
+        return EmailValidator.getInstance().isValid(value);
     }
 
     /**
@@ -132,8 +137,9 @@ public final class ValidUtils {
      */
     public static boolean isHomePhoneNumber(String value) {
         if (value.length() < 2) return false;
+
         // 서울
-        if (value.substring(0, 2).equals("02")) {
+        if (value.startsWith("02")) {
             String cuttingNum = value.substring(2);
             return Pattern.matches("^([-)])?\\d{3,4}-?\\d{4}$", cuttingNum);
         } else if (value.length() >= 3) {
