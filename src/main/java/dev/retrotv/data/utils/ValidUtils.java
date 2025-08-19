@@ -56,7 +56,7 @@ public final class ValidUtils {
      * @return 숫자 포함 여부
      */
     public static boolean isIncludeNumber(String value) {
-        return Pattern.matches(".*\\d+.*", value);
+        return Pattern.compile("\\d").matcher(value).find();
     }
 
     /**
@@ -66,7 +66,7 @@ public final class ValidUtils {
      * @return 특수문자 포함 여부
      */
     public static boolean isIncludeSpecialCharacter(String value) {
-        return Pattern.matches(".*[^a-zA-Z0-9ㄱ-ㅎㅏ-ㅣ가-힣\\s]+.*", value);
+        return Pattern.compile("[^a-zA-Z0-9ㄱ-ㅎㅏ-ㅣ가-힣\\s]").matcher(value).find();
     }
 
     /**
@@ -76,7 +76,7 @@ public final class ValidUtils {
      * @return 한글 포함 여부
      */
     public static boolean isIncludeKorean(String value) {
-        return Pattern.matches(".*[ㄱ-ㅎㅏ-ㅣ가-힣]+.*", value);
+        return Pattern.compile("[ㄱ-ㅎㅏ-ㅣ가-힣]").matcher(value).find();
     }
 
     /**
