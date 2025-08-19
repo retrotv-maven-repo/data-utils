@@ -1,15 +1,22 @@
 import com.vanniktech.maven.publish.SonatypeHost
-import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 import java.net.URI
 
 plugins {
-    java
-    jacoco
-    `maven-publish`
-    kotlin("jvm") version "2.1.21"
+    id("java")
+    id("jacoco")
+    id("maven-publish")
     id("com.vanniktech.maven.publish") version "0.32.0"
-    id("org.jetbrains.dokka") version "2.0.0"
     id("org.sonarqube") version "4.0.0.2929"
+}
+
+tasks.withType<JavaCompile> {
+    options.encoding = "UTF-8"
+}
+
+java {
+    toolchain {
+        languageVersion.set(JavaLanguageVersion.of(8))
+    }
 }
 
 group = "dev.retrotv"
@@ -20,10 +27,6 @@ tasks.register("printVersionName") {
     description = "이 프로젝트의 버전을 출력합니다."
     group = JavaBasePlugin.DOCUMENTATION_GROUP
     println(project.version)
-}
-
-tasks.dokkaHtml {
-    outputDirectory.set(layout.buildDirectory.dir("documentation/html"))
 }
 
 repositories {
@@ -49,19 +52,10 @@ dependencies {
 
     implementation("org.projectlombok:lombok:${lombok}")
 
-    implementation(kotlin("stdlib-jdk8"))
-
-    testImplementation("org.junit.jupiter:junit-jupiter-params:${junit}")
-    testImplementation(kotlin("test"))
-}
-
-tasks {
-    compileKotlin {
-        compilerOptions.jvmTarget.set(JvmTarget.JVM_1_8)
-    }
-    compileTestKotlin {
-        compilerOptions.jvmTarget.set(JvmTarget.JVM_1_8)
-    }
+    // JUnit 5
+    testImplementation(platform("org.junit:junit-bom:${junit}"))
+    testImplementation("org.junit.jupiter:junit-jupiter")
+    testRuntimeOnly("org.junit.platform:junit-platform-launcher")
 }
 
 mavenPublishing {
@@ -121,10 +115,6 @@ tasks.withType<Sign>().configureEach {
         // 로컬 및 깃허브 패키지 배포 시에는 서명하지 않도록 설정
         !gradle.taskGraph.hasTask(":publishMavenPublicationToMavenLocal") && !gradle.taskGraph.hasTask(":publishMavenPublicationToGitHubPackagesRepository")
     }
-}
-
-kotlin {
-    jvmToolchain(8)
 }
 
 apply(from = "${rootDir}/gradle/sonarcloud.gradle")
