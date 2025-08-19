@@ -1,5 +1,7 @@
 package dev.retrotv.data.utils;
 
+import lombok.NonNull;
+
 import java.io.DataInputStream;
 import java.io.File;
 import java.io.IOException;
@@ -26,7 +28,7 @@ public final class FileUtils {
      * @throws InvalidPathException 파일 인스턴스로부터 Path 객체를 생성할 수 없으면 던져짐
      * @throws SecurityException 파일 및 디렉터리 접근 권한이 없으면 던져짐
      */
-    public static byte[] read(File file) throws IOException {
+    public static byte[] read(@NonNull File file) throws IOException {
         byte[] fileData;
         try (DataInputStream dis = new DataInputStream(Files.newInputStream(file.toPath()))) {
             fileData = new byte[(int) file.length()];

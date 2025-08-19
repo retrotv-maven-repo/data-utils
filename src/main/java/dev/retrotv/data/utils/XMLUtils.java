@@ -1,5 +1,6 @@
 package dev.retrotv.data.utils;
 
+import lombok.NonNull;
 import org.json.JSONObject;
 import org.json.XML;
 
@@ -17,7 +18,7 @@ public final class XMLUtils {
         throw new UnsupportedOperationException("XMLUtils는 인스턴스화 할 수 없습니다.");
     }
 
-    public static JSONObject xmlToJson(String xml) {
+    public static JSONObject xmlToJson(@NonNull String xml) {
         return XML.toJSONObject(xml);
     }
 }

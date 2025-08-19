@@ -1,6 +1,7 @@
 package dev.retrotv.data.utils;
 
 import dev.retrotv.data.enums.OperatingSystem;
+import lombok.NonNull;
 import org.apache.commons.codec.DecoderException;
 import org.apache.commons.codec.binary.Base64;
 import org.apache.commons.codec.binary.Hex;
@@ -8,6 +9,8 @@ import java.math.RoundingMode;
 import java.nio.charset.Charset;
 import java.security.SecureRandom;
 import java.text.DecimalFormat;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * 문자열 관련 유틸리티 클래스입니다.
@@ -244,10 +247,12 @@ public final class StringUtils {
      * @param value 원본 문자열
      * @return 원본 문자열을 무작위로 섞은 문자열
      */
-    public static String scrambleChars(String value) {
+    public static String scrambleChars(@NonNull String value) {
         char[] ca = value.toCharArray();
-        java.util.List<Character> orgValueMutableList = new java.util.ArrayList<>();
-        for (char c : ca) orgValueMutableList.add(c);
+        List<Character> orgValueMutableList = new ArrayList<>();
+        for (char c : ca) {
+            orgValueMutableList.add(c);
+        }
         char[] newCharArray = new char[ca.length];
         SecureRandom sr = new SecureRandom();
 
@@ -258,6 +263,7 @@ public final class StringUtils {
             orgValueMutableList.remove(random);
             i++;
         }
+
         return new String(newCharArray);
     }
 
@@ -268,7 +274,7 @@ public final class StringUtils {
      * @param separator 구분자
      * @return 조합된 문자열
      */
-    public static String combineStrings(String[] values, char separator) {
+    public static String combineStrings(@NonNull String[] values, char separator) {
         StringBuilder sb = new StringBuilder();
         for (String v : values) {
             sb.append(v).append(separator);
@@ -277,7 +283,7 @@ public final class StringUtils {
         return sb.toString();
     }
 
-    public static String combineStrings(String... values) {
+    public static String combineStrings(@NonNull String... values) {
         return combineStrings(values, ' ');
     }
 
@@ -323,13 +329,13 @@ public final class StringUtils {
 
     /**
      * 문자열의 앞뒤 공백을 제거하고 반환합니다.
-     * \u0020 이하의 공백들만 제거됩니다.
-     *
+     * \\u0020 이하의 공백들만 제거됩니다.
+     * -------------------------------------
      * nullReturnNull이 true인 경우
      * " Hello, World! " -> "Hello, World!"
      * "               " -> ""
      * null              -> null
-     *
+     * -------------------------------------
      * nullReturnNull이 false인 경우
      * " Hello, World! " -> "Hello, World!"
      * "               " -> ""
@@ -350,12 +356,12 @@ public final class StringUtils {
     /**
      * 문자열의 앞뒤 공백을 제거하고 반환합니다.
      * 유니코드상에 존재하는 모든 공백문자를 제거합니다.
-     *
+     * -------------------------------------
      * nullReturnNull이 true인 경우
      * " Hello, World! " -> "Hello, World!"
      * "               " -> ""
      * null              -> null
-     *
+     * -------------------------------------
      * nullReturnNull이 false인 경우
      * " Hello, World! " -> "Hello, World!"
      * "               " -> ""

@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 import org.json.JSONObject;
 
-class XMLUtilsJavaTest {
+class XMLUtilsTest {
     
     @Test
     @DisplayName("XML to JSON 변환 테스트")

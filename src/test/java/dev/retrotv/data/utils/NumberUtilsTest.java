@@ -7,7 +7,7 @@ import org.junit.jupiter.params.provider.CsvSource;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class NumberUtilsJavaTest {
+class NumberUtilsTest {
 
     @CsvSource({
         "3, 12, 3",

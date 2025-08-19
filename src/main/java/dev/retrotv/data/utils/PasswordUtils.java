@@ -27,7 +27,7 @@ public final class PasswordUtils {
      * @param maxLength 최대 길이
      * @return 패스워드의 길이 만족 여부
      */
-    public static boolean checkLength(CharSequence password, int minLength, int maxLength) {
+    public static boolean checkLength(@NonNull CharSequence password, int minLength, int maxLength) {
         return password.length() >= minLength && password.length() <= maxLength;
     }
 
@@ -39,7 +39,7 @@ public final class PasswordUtils {
      * @param minLength 최소 길이
      * @return 패스워드의 길이 만족 여부
      */
-    public static boolean checkLength(CharSequence password, int minLength) {
+    public static boolean checkLength(@NonNull CharSequence password, int minLength) {
         return password.length() >= minLength;
     }
 
@@ -50,7 +50,7 @@ public final class PasswordUtils {
      * @param password 길이를 검증할 패스워드 문자열
      * @return 패스워드의 길이 만족 여부
      */
-    public static boolean checkLength(CharSequence password) {
+    public static boolean checkLength(@NonNull CharSequence password) {
         return checkLength(password, 8, 16);
     }
 
@@ -89,7 +89,7 @@ public final class PasswordUtils {
      *
      * @param password 검증할 패스워드 문자열
      */
-    public static boolean isInclude(CharSequence password) {
+    public static boolean isInclude(@NonNull CharSequence password) {
         return isInclude(password, true, true, true, true);
     }
 }

@@ -2,10 +2,38 @@ package dev.retrotv.data.utils;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 
-class ByteUtilsJavaTest {
+import java.nio.charset.StandardCharsets;
+
+import static org.junit.jupiter.api.Assertions.*;
+
+class ByteUtilsTest {
+
+    @Test
+    @DisplayName("toString 메소드 테스트")
+    void test_toString_method() {
+        byte[] data = new byte[8];
+        data[0] = 1;
+        data[1] = 2;
+        data[2] = 3;
+        data[3] = 4;
+        data[4] = 5;
+        data[5] = 6;
+        data[6] = 7;
+        data[7] = 8;
+
+        String result = ByteUtils.toString(data);
+        assertNotNull(result);
+
+        result = ByteUtils.toString(null);
+        assertEquals("", result);
+
+        result = ByteUtils.toString(data, StandardCharsets.UTF_8);
+        assertNotNull(result);
+
+        result = ByteUtils.toString(null, StandardCharsets.UTF_8);
+        assertEquals("", result);
+    }
 
     @Test
     @DisplayName("isEmpty 메소드 테스트")

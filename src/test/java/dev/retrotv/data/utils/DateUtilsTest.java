@@ -10,7 +10,7 @@ import java.time.LocalDateTime;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class DateUtilsJavaTest {
+class DateUtilsTest {
 
     @Test
     @DisplayName("isLeapYear 메소드 테스트")
@@ -31,6 +31,11 @@ class DateUtilsJavaTest {
         assertFalse(DateUtils.isLeapYear("2200"));
         assertFalse(DateUtils.isLeapYear(2100));
         assertFalse(DateUtils.isLeapYear("2100"));
+
+        assertThrows(IllegalArgumentException.class, () -> DateUtils.isLeapYear("-1"));
+        assertThrows(IllegalArgumentException.class, () -> DateUtils.isLeapYear(-1));
+        assertThrows(IllegalArgumentException.class, () -> DateUtils.isLeapYear("10000"));
+        assertThrows(IllegalArgumentException.class, () -> DateUtils.isLeapYear(10000));
     }
 
     @Test
@@ -44,6 +49,11 @@ class DateUtilsJavaTest {
         assertEquals("30", DateUtils.getLastDay("2023", "04"));
         assertEquals("28", DateUtils.getLastDay("2023", "2"));
         assertEquals("29", DateUtils.getLastDay("2024", "2"));
+
+        assertThrows(IllegalArgumentException.class, () -> DateUtils.getLastDay(null, 2));
+        assertThrows(IllegalArgumentException.class, () -> DateUtils.getLastDay(2023, 0));
+        assertThrows(IllegalArgumentException.class, () -> DateUtils.getLastDay(null, "2"));
+        assertThrows(IllegalArgumentException.class, () -> DateUtils.getLastDay("2023", "0"));
     }
 
     @Test
@@ -58,11 +68,15 @@ class DateUtilsJavaTest {
 
         assertEquals("20241231", DateUtils.addYMD("20231231", 1, null, null, "yyyyMMdd"));
         assertEquals("2024-12-31", DateUtils.addYMD("2023-12-31", 1, null, null, "yyyy-MM-dd"));
+
+        assertThrows(IllegalArgumentException.class, () -> DateUtils.addYMD("202312310000", 1, null, null, "yyyy-MM-dd"));
+        assertThrows(ParseException.class, () -> DateUtils.addYMD("20231231", 1, null, null, "yyyy*MM*dd"));
+        assertThrows(IllegalArgumentException.class, () -> DateUtils.addYMD("abcdefgh", 1, null, null, "yyyyMMdd"));
     }
 
     @Test
     @DisplayName("stringToDate 메소드 테스트")
-    @SuppressWarnings("java:S1874")
+    @SuppressWarnings("java:S187")
     void test_stringToDate() throws ParseException {
         Date date = DateUtils.stringToDate("2023-12-31", "yyyy-MM-dd");
         assertEquals(2023, date.getYear() + 1900);

@@ -8,7 +8,7 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class CollectionUtilsJavaTest {
+class CollectionUtilsTest {
 
     @Test
     @DisplayName("removeDuplicates 메소드 테스트")
