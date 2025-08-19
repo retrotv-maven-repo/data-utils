@@ -124,7 +124,9 @@ class StringUtilsTest {
     @Test
     @DisplayName("scrambleChars 메소드 테스트")
     void test_scrambleChars_method() {
-        System.out.println(StringUtils.scrambleChars("Hello, World!"));
+        String scrambledValue = StringUtils.scrambleChars("Hello, World!");
+        assertNotEquals("Hello, World!", scrambledValue);
+        assertEquals(13, scrambledValue.length());
     }
 
     @Test
