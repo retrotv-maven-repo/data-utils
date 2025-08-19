@@ -26,6 +26,10 @@ class PasswordUtilsTest {
     @DisplayName("isInclude 메소드 테스트")
     void test_isInclude_method() {
         assertTrue(PasswordUtils.isInclude("This !s Passw0rd"));
+        assertFalse(PasswordUtils.isInclude("this is password"));
+        assertFalse(PasswordUtils.isInclude("This is password"));
+        assertFalse(PasswordUtils.isInclude("This !s password"));
+        assertFalse(PasswordUtils.isInclude("This is passw0rd"));
         assertTrue(PasswordUtils.isInclude("This is password", true, false, false, false));
         assertTrue(PasswordUtils.isInclude("This is password", true, true, false, false));
         assertTrue(PasswordUtils.isInclude("This is Passw0rd", true, true, true, false));
