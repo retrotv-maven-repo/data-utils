@@ -26,7 +26,7 @@ public final class ValidUtils {
      * @return 영문자 포함 여부
      */
     public static boolean isIncludeEnglish(String value) {
-        return Pattern.matches(".*[a-zA-Z]+.*", value);
+        return Pattern.compile("[a-zA-Z]").matcher(value).find();
     }
 
     /**
@@ -36,7 +36,7 @@ public final class ValidUtils {
      * @return 영소문자 포함 여부
      */
     public static boolean isIncludeLowerCase(String value) {
-        return Pattern.matches(".*[a-z]+.*", value);
+        return Pattern.compile("[a-z]").matcher(value).find();
     }
 
     /**
@@ -46,7 +46,7 @@ public final class ValidUtils {
      * @return 영대문자 포함 여부
      */
     public static boolean isIncludeUpperCase(String value) {
-        return Pattern.matches(".*[A-Z]+.*", value);
+        return Pattern.compile("[A-Z]").matcher(value).find();
     }
 
     /**
