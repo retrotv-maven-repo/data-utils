@@ -10,7 +10,7 @@ import java.util.Locale;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class StringUtilsJavaTest {
+class StringUtilsTest {
 
     @Test
     @DisplayName("hexToBase64 메소드 테스트")

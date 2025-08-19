@@ -7,7 +7,7 @@ import java.io.File;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class FileUtilsJavaTest {
+class FileUtilsTest {
 
     @Test
     @DisplayName("isNull() 메서드 테스트")

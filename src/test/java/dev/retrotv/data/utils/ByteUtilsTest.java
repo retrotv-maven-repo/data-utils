@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 
-class ByteUtilsJavaTest {
+class ByteUtilsTest {
 
     @Test
     @DisplayName("isEmpty 메소드 테스트")
