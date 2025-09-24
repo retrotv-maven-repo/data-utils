@@ -76,7 +76,7 @@ class DateUtilsTest {
 
     @Test
     @DisplayName("stringToDate 메소드 테스트")
-    @SuppressWarnings("java:S187")
+    @SuppressWarnings("java:S1874")
     void test_stringToDate() throws ParseException {
         Date date = DateUtils.stringToDate("2023-12-31", "yyyy-MM-dd");
         assertEquals(2023, date.getYear() + 1900);
