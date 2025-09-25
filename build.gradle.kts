@@ -38,7 +38,7 @@ val apacheCommonsCodec = "1.18.0"
 val apacheCommonsLang = "3.18.0"
 val apacheCommonsCollections = "4.5.0"
 val apacheCommonsValidator = "1.10.0"
-val lombok = "1.18.38"
+val lombok = "1.18.42"
 val orgJson = "20250517"
 val junit = "5.13.1"
 
