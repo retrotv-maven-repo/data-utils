@@ -1,11 +1,7 @@
-import java.net.URI
-
 plugins {
     id("java")
     id("jacoco")
     id("maven-publish")
-    id("com.vanniktech.maven.publish") version "0.34.0"
-    id("org.sonarqube") version "7.0.1.6134"
 }
 
 tasks.withType<JavaCompile> {
@@ -57,62 +53,27 @@ dependencies {
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
 }
 
-mavenPublishing {
-    publishToMavenCentral()
-    signAllPublications()
-    coordinates(group.toString(), project.name, version.toString())
-
-    pom {
-        name.set("data-utils")
-        description.set("Java 자료형과 관련된 유틸성 기능을 총망라한 라이브러리 입니다.")
-        inceptionYear.set("2025")
-        url.set("https://github.com/retrotv-maven-repo/data-utils")
-
-        licenses {
-            license {
-                name.set("The Apache License, Version 2.0")
-                url.set("https://www.apache.org/licenses/LICENSE-2.0.txt")
-            }
-        }
-
-        developers {
-            developer {
-                id.set("yjj8353")
-                name.set("JaeJun Yang")
-                email.set("yjj8353@gmail.com")
-            }
-        }
-
-        scm {
-            connection.set("scm:git:git://github.com/retrotv-maven-repo/data-utils.git")
-            developerConnection.set("scm:git:ssh://github.com/retrotv-maven-repo/data-utils.git")
-            url.set("https://github.com/retrotv-maven-repo/data-utils.git")
-        }
-    }
-
-    publishing {
+// 이 아래는 호환성 테스트를 제외한 빌드에서만 적용
+buildscript {
+    val isCompatibilityTest = findProperty("compatibilityTest")?.toString()?.toBoolean() ?: false
+    if (!isCompatibilityTest) {
         repositories {
-
-            // Github Packages에 배포하기 위한 설정
-            maven {
-                name = "GitHubPackages"
-                url = URI("https://maven.pkg.github.com/retrotv-maven-repo/data-utils")
-                credentials {
-                    username = System.getenv("USERNAME")
-                    password = System.getenv("PASSWORD")
-                }
-            }
+            gradlePluginPortal()
+            mavenCentral()
+        }
+        dependencies {
+            classpath("com.vanniktech:gradle-maven-publish-plugin:0.34.0")
+            classpath("org.sonarsource.scanner.gradle:sonarqube-gradle-plugin:7.0.1.6134")
         }
     }
 }
 
-tasks.withType<Sign>().configureEach {
-    onlyIf {
-
-        // 로컬 및 깃허브 패키지 배포 시에는 서명하지 않도록 설정
-        !gradle.taskGraph.hasTask(":publishMavenPublicationToMavenLocal") && !gradle.taskGraph.hasTask(":publishMavenPublicationToGitHubPackagesRepository")
-    }
+// 호환성 테스트를 제외한 빌드에서만 적용
+val isCompatibilityTest = findProperty("compatibilityTest")?.toString()?.toBoolean() ?: false
+if (!isCompatibilityTest) {
+    apply(plugin = "com.vanniktech.maven.publish")
+    apply(plugin = "org.sonarqube")
+    apply(from = "${rootDir}/gradle/jacoco.gradle")
+    apply(from = "${rootDir}/gradle/publish.gradle")
+    apply(from = "${rootDir}/gradle/sonarcloud.gradle")
 }
-
-apply(from = "${rootDir}/gradle/sonarcloud.gradle")
-apply(from = "${rootDir}/gradle/jacoco.gradle")
