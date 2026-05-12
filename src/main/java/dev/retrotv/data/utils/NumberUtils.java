@@ -139,19 +139,22 @@ public final class NumberUtils {
         return value == null;
     }
 
-    // 내부 계산 메서드
+    // 최소공배수 계산 메서드
     private static long lcm(long value1, long value2) {
         return (value1 * value2) / gcm(value1, value2);
     }
 
+    // 최소공배수 계산 메서드
     private static int lcm(int value1, int value2) {
         return (value1 * value2) / gcm(value1, value2);
     }
 
+    // 최대공약수 계산 메서드
     private static long gcm(long value1, long value2) {
         return value2 != 0 ? gcm(value2, value1 % value2) : value1;
     }
 
+    // 최대공약수 계산 메서드
     private static int gcm(int value1, int value2) {
         return value2 != 0 ? gcm(value2, value1 % value2) : value1;
     }

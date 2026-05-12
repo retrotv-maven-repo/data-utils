@@ -23,6 +23,8 @@ import java.util.List;
  * @since 1.0.0
  */
 public final class StringUtils {
+    private static final SecureRandom SECURE_RANDOM = new SecureRandom();
+
     private StringUtils() {
         throw new UnsupportedOperationException("StringUtils는 인스턴스화 할 수 없습니다.");
     }
@@ -194,6 +196,14 @@ public final class StringUtils {
         return new String(arr);
     }
 
+    /**
+     * 문자열 전체를 지정된 문자로 마스킹하고 반환합니다.
+     * 마스킹 시작지점과 종료지점이 문자열의 처음과 끝으로 자동 설정됩니다.
+     *
+     * @param value 마스킹 할 문자열
+     * @param maskChar 마스킹 문자
+     * @return 마스킹 된 문자열
+     */
     public static String masking(String value, char maskChar) {
         return masking(value, maskChar, 0, value.length() - 1);
     }
@@ -254,11 +264,10 @@ public final class StringUtils {
             orgValueMutableList.add(c);
         }
         char[] newCharArray = new char[ca.length];
-        SecureRandom sr = new SecureRandom();
 
         int i = 0;
         while (i < newCharArray.length) {
-            int random = sr.nextInt(orgValueMutableList.size());
+            int random = SECURE_RANDOM.nextInt(orgValueMutableList.size());
             newCharArray[i] = orgValueMutableList.get(random);
             orgValueMutableList.remove(random);
             i++;
@@ -283,6 +292,13 @@ public final class StringUtils {
         return sb.toString();
     }
 
+    /**
+     * 인자로 받은 문자열 집합과 구분자를 순차적으로 조합하고 반환합니다.
+     * 구분자는 공백으로 자동 설정됩니다.
+     *
+     * @param values 조합할 문자열 집합
+     * @return 조합된 문자열
+     */
     public static String combineStrings(@NonNull String... values) {
         return combineStrings(values, ' ');
     }
@@ -349,6 +365,15 @@ public final class StringUtils {
         return nullReturnNull ? org.apache.commons.lang3.StringUtils.trim(value) : org.apache.commons.lang3.StringUtils.trimToEmpty(value);
     }
 
+    /**
+     * 문자열의 앞뒤 공백을 제거하고 반환합니다.
+     * \\u0020 이하의 공백들만 제거됩니다.
+     * value가 null인 경우 null을 반환합니다.
+     *
+     * @param value 공백을 제거할 문자열
+     * @param nullReturnNull value가 null로 들어올 경우 null로 반환할지에 대한 여부 (true: null 반환, false: "" 반환)
+     * @return 공백이 제거된 문자열
+     */
     public static String trim(String value) {
         return trim(value, true);
     }
@@ -375,6 +400,14 @@ public final class StringUtils {
         return nullReturnNull ? org.apache.commons.lang3.StringUtils.strip(value) : org.apache.commons.lang3.StringUtils.stripToEmpty(value);
     }
 
+    /**
+     * 문자열의 앞뒤 공백을 제거하고 반환합니다.
+     * 유니코드상에 존재하는 모든 공백문자를 제거합니다.
+     * value가 null인 경우 null을 반환합니다.
+     *
+     * @param value 공백을 제거할 문자열
+     * @return 공백이 제거된 문자열
+     */
     public static String strip(String value) {
         return strip(value, true);
     }

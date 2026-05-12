@@ -124,7 +124,7 @@ public final class DateUtils {
      */
     public static boolean isValidDate(@NonNull String date) {
         if (date.length() != 8 && date.length() != 10) {
-            throw new IllegalArgumentException("date는 8 혹은 10글자의 문자열만 허용됩니다.");
+            throw new IllegalArgumentException("date는 yyyyMMdd 혹은 yyyy-MM-dd 형식의 문자열만 허용됩니다.");
         }
 
         String replacedDate = date.replace("-", "");
@@ -188,64 +188,185 @@ public final class DateUtils {
         return sdf.format(cal.getTime());
     }
 
+    /**
+     * date 문자열을 Date 객체로 변환하여 반환합니다. date 문자열은 yyyyMMdd 형식이어야 합니다.
+     *
+     * @param date 변환할 date 문자열
+     * @return 변환된 Date 객체
+     * @throws ParseException 지원되지 않는 형식의 date 문자열일 경우 발생
+     */
     public static Date stringToDate(@NonNull String date) throws ParseException {
         return stringToDate(date, DEFAULT_FORMAT);
     }
 
-    public static Date stringToDate(@NonNull String date, @NonNull String format) throws ParseException {
+    /**
+     * <pre>
+     * date 문자열을 Date 객체로 변환하여 반환합니다.
+     * format 인수를 통해 date 문자열의 형식을 지정할 수 있습니다. format이 지정되지 않은 경우, 기본적으로 yyyyMMdd 형식이 사용됩니다.
+     * </pre>
+     *
+     * @param date 변환할 date 문자열
+     * @param format date 문자열의 형식
+     * @return 변환된 Date 객체
+     * @throws ParseException 지원되지 않는 형식의 date 문자열일 경우 발생
+     */
+    public static Date stringToDate(@NonNull String date, String format) throws ParseException {
+        if (format == null || format.isEmpty()) {
+            format = DEFAULT_FORMAT;
+        }
+
         SimpleDateFormat dateFormat = new SimpleDateFormat(format);
         return dateFormat.parse(date);
     }
 
+    /**
+     * date 문자열을 LocalDate 객체로 변환하여 반환합니다. date 문자열은 yyyyMMdd 형식이어야 합니다.
+     *
+     * @param date 변환할 date 문자열
+     * @return 변환된 LocalDate 객체
+     */
     public static LocalDate stringToLocalDate(@NonNull String date) {
         return stringToLocalDate(date, DEFAULT_FORMAT);
     }
 
-    public static LocalDate stringToLocalDate(@NonNull String date, @NonNull String format) {
+    /**
+     * <pre>
+     * date 문자열을 LocalDate 객체로 변환하여 반환합니다.
+     * format 인수를 통해 date 문자열의 형식을 지정할 수 있습니다. format이 지정되지 않은 경우, 기본적으로 yyyyMMdd 형식이 사용됩니다.
+     * </pre>
+     *
+     * @param date 변환할 date 문자열
+     * @param format date 문자열의 형식
+     * @return 변환된 LocalDate 객체
+     */
+    public static LocalDate stringToLocalDate(@NonNull String date, String format) {
+        if (format == null || format.isEmpty()) {
+            format = DEFAULT_FORMAT;
+        }
+
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern(format);
         return LocalDate.parse(date, formatter);
     }
 
+    /**
+     * date 문자열을 LocalDateTime 객체로 변환하여 반환합니다. date 문자열은 yyyyMMdd HH:mm:ss 형식이어야 합니다.
+     *
+     * @param date 변환할 date 문자열
+     * @return 변환된 LocalDateTime 객체
+     */
     public static LocalDateTime stringToLocalDateTime(@NonNull String date) {
-        return stringToLocalDateTime(date, "yyyyMMdd HH:mm:ss");
+        return stringToLocalDateTime(date, null);
     }
 
-    public static LocalDateTime stringToLocalDateTime(@NonNull String date, @NonNull String format) {
+    /**
+     * <pre>
+     * date 문자열을 LocalDateTime 객체로 변환하여 반환합니다.
+     * format 인수를 통해 date 문자열의 형식을 지정할 수 있습니다. format이 지정되지 않은 경우, 기본적으로 yyyyMMdd HH:mm:ss 형식이 사용됩니다.
+     * </pre>
+     *
+     * @param date 변환할 date 문자열
+     * @param format date 문자열의 형식
+     * @return 변환된 LocalDateTime 객체
+     */
+    public static LocalDateTime stringToLocalDateTime(@NonNull String date, String format) {
+        if (format == null || format.isEmpty()) {
+            format = "yyyyMMdd HH:mm:ss";
+        }
+
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern(format);
         return LocalDateTime.parse(date, formatter);
     }
 
+    /**
+     * Date 객체를 date 문자열로 변환하여 반환합니다. 반환되는 date 문자열은 yyyyMMdd 형식입니다.
+     *
+     * @param date 변환할 Date 객체
+     * @return 변환된 date 문자열
+     */
     public static String dateToString(@NonNull Date date) {
         return dateToString(date, DEFAULT_FORMAT);
     }
 
+    /**
+     * <pre>
+     * Date 객체를 date 문자열로 변환하여 반환합니다.
+     * format 인수를 통해 반환되는 date 문자열의 형식을 지정할 수 있습니다. format이 지정되지 않은 경우, 기본적으로 yyyyMMdd 형식이 사용됩니다.
+     * </pre>
+     *
+     * @param date 변환할 Date 객체
+     * @param format 반환될 date 문자열의 형식
+     * @return 변환된 date 문자열
+     */
     public static String dateToString(@NonNull Date date, @NonNull String format) {
         SimpleDateFormat dateFormat = new SimpleDateFormat(format);
         return dateFormat.format(date);
     }
 
+    /**
+     * LocalDate 객체를 date 문자열로 변환하여 반환합니다. 반환되는 date 문자열은 yyyyMMdd 형식입니다.
+     *
+     * @param date 변환할 LocalDate 객체
+     * @return 변환된 date 문자열
+     */
     public static String dateToString(@NonNull LocalDate date) {
         return dateToString(date, DEFAULT_FORMAT);
     }
 
+    /**
+     * <pre>
+     * LocalDate 객체를 date 문자열로 변환하여 반환합니다.
+     * format 인수를 통해 반환되는 date 문자열의 형식을 지정할 수 있습니다. format이 지정되지 않은 경우, 기본적으로 yyyyMMdd 형식이 사용됩니다.
+     * </pre>
+     *
+     * @param date 변환할 LocalDate 객체
+     * @param format 반환될 date 문자열의 형식
+     * @return 변환된 date 문자열
+     */
     public static String dateToString(@NonNull LocalDate date, @NonNull String format) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern(format);
         return date.format(formatter);
     }
 
+    /**
+     * LocalDateTime 객체를 date 문자열로 변환하여 반환합니다. 반환되는 date 문자열은 yyyyMMdd HH:mm:ss 형식입니다.
+     *
+     * @param date 변환할 LocalDateTime 객체
+     * @return 변환된 date 문자열
+     */
     public static String dateToString(@NonNull LocalDateTime date) {
-        return dateToString(date, "yyyyMMdd HH:mm:ss");
+        return dateToString(date, null);
     }
 
-    public static String dateToString(@NonNull LocalDateTime date, @NonNull String format) {
+    /**
+     * <pre>
+     * LocalDateTime 객체를 date 문자열로 변환하여 반환합니다.
+     * format 인수를 통해 반환되는 date 문자열의 형식을 지정할 수 있습니다. format이 지정되지 않은 경우, 기본적으로 yyyyMMdd HH:mm:ss 형식이 사용됩니다.
+     * </pre>
+     *
+     * @param date 변환할 LocalDateTime 객체
+     * @param format 반환될 date 문자열의 형식
+     * @return 변환된 date 문자열
+     */
+    public static String dateToString(@NonNull LocalDateTime date, String format) {
+        if (format == null || format.isEmpty()) {
+            format = "yyyyMMdd HH:mm:ss";
+        }
+
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern(format);
         return date.format(formatter);
     }
 
+    /**
+     * Date 객체가 null인지 여부를 반환합니다.
+     *
+     * @param date null 여부를 확인할 Date 객체
+     * @return date가 null인 경우 true, 그렇지 않은 경우 false
+     */
     public static boolean isNull(Date date) {
         return date == null;
     }
 
+    // 문자열이 유효한 연도인지 여부를 반환합니다.
     private static boolean isValidYear(@NonNull String year) {
         try {
             int y = Integer.parseInt(year);
@@ -255,10 +376,12 @@ public final class DateUtils {
         }
     }
 
+    // 정수가 유효한 연도인지 여부를 반환합니다.
     private static boolean isValidYear(int year) {
         return year >= 1 && year <= 9999;
     }
 
+    // 문자열이 유효한 월인지 여부를 반환합니다.
     private static boolean isValidMonth(@NonNull String month) {
         try {
             int m = Integer.parseInt(month);
@@ -268,10 +391,12 @@ public final class DateUtils {
         }
     }
 
+    // 정수가 유효한 월인지 여부를 반환합니다.
     private static boolean isValidMonth(int month) {
         return month >= 1 && month <= 12;
     }
 
+    // 정수가 유효한 일인지 여부를 반환합니다.
     private static boolean isValidDay(int year, int month, int day) {
         return day >= 1 && day <= getLastDay(year, month);
     }
