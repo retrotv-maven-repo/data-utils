@@ -305,9 +305,9 @@ public final class StringUtils {
 
     /**
      * 문자열이 null인지 확인하고 반환합니다.
-     * null -> true
-     * ""   -> false
-     * " "  -> false
+     * {@code null -> true}
+     * {@code ""   -> false}
+     * {@code " "  -> false}
      *
      * @param value 확인할 문자열
      * @return 문자열이 null인 경우 true, 아닌 경우 false
@@ -318,9 +318,9 @@ public final class StringUtils {
 
     /**
      * 문자열이 null이거나 빈 문자열인지 확인하고 반환합니다.
-     * null -> true
-     * ""   -> true
-     * " "  -> false
+     * {@code null -> true}
+     * {@code ""   -> true}
+     * {@code " "  -> false}
      *
      * @param value 확인할 문자열
      * @return 문자열이 null혹은 빈 문자열인 경우 true, 아닌 경우 false
@@ -331,10 +331,10 @@ public final class StringUtils {
 
     /**
      * 문자열이 null, 빈 문자열 혹은 공백 문자열인지 확인하고 반환합니다.
-     * null    -> true
-     * ""      -> true
-     * " "     -> true
-     * "     " -> true
+     * {@code null    -> true}
+     * {@code ""      -> true}
+     * {@code " "     -> true}
+     * {@code "     " -> true}
      *
      * @param value 확인할 문자열
      * @return 문자열이 null, 빈 문자열 혹은 공백인 경우 true, 아닌 경우 false
@@ -348,14 +348,14 @@ public final class StringUtils {
      * \\u0020 이하의 공백들만 제거됩니다.
      * -------------------------------------
      * nullReturnNull이 true인 경우
-     * " Hello, World! " -> "Hello, World!"
-     * "               " -> ""
-     * null              -> null
+     * {@code " Hello, World! " -> "Hello, World!"}
+     * {@code "               " -> ""}
+     * {@code null              -> null}
      * -------------------------------------
      * nullReturnNull이 false인 경우
-     * " Hello, World! " -> "Hello, World!"
-     * "               " -> ""
-     * null              -> ""
+     * {@code " Hello, World! " -> "Hello, World!"}
+     * {@code "               " -> ""}
+     * {@code null              -> ""}
      *
      * @param value 공백을 제거할 문자열
      * @param nullReturnNull value가 null로 들어올 경우 null로 반환할지에 대한 여부 (true: null 반환, false: "" 반환)
@@ -371,7 +371,6 @@ public final class StringUtils {
      * value가 null인 경우 null을 반환합니다.
      *
      * @param value 공백을 제거할 문자열
-     * @param nullReturnNull value가 null로 들어올 경우 null로 반환할지에 대한 여부 (true: null 반환, false: "" 반환)
      * @return 공백이 제거된 문자열
      */
     public static String trim(String value) {
@@ -383,14 +382,14 @@ public final class StringUtils {
      * 유니코드상에 존재하는 모든 공백문자를 제거합니다.
      * -------------------------------------
      * nullReturnNull이 true인 경우
-     * " Hello, World! " -> "Hello, World!"
-     * "               " -> ""
-     * null              -> null
+     * {@code " Hello, World! " -> "Hello, World!"}
+     * {@code "               " -> ""}
+     * {@code null              -> null}
      * -------------------------------------
      * nullReturnNull이 false인 경우
-     * " Hello, World! " -> "Hello, World!"
-     * "               " -> ""
-     * null              -> ""
+     * {@code " Hello, World! " -> "Hello, World!"}
+     * {@code "               " -> ""}
+     * {@code null              -> ""}
      *
      * @param value 공백을 제거할 문자열
      * @param nullReturnNull value가 null로 들어올 경우 null로 반환할지에 대한 여부 (true: null 반환, false: "" 반환)
