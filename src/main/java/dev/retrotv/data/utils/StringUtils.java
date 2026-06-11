@@ -76,6 +76,7 @@ public final class StringUtils {
      *
      * @param hex Hex 형식의 문자열
      * @return 변환된 Base64 형식의 문자열
+     * @throws DecoderException 디코딩 실패 시 던져짐
      */
     public static String hexToBase64(String hex) throws DecoderException {
         byte[] bytes = hexToByteArray(hex);
