@@ -22,9 +22,13 @@ tasks.withType(JavaCompile).configureEach {
     options.encoding = 'UTF-8'
 }
 
+tasks.withType(Test).configureEach {
+    useJUnitPlatform()
+}
+
 java {
     toolchain {
-        languageVersion = JavaLanguageVersion.of(8)
+        languageVersion = JavaLanguageVersion.of((project.findProperty('targetJava') ?: '8').toString().toInteger())
     }
 }
 

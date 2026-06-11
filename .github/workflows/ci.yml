@@ -11,19 +11,16 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        java: [8, 11, 17, 21]
+        target-java: [8, 11, 17, 21, 25]
 
     steps:
       - uses: actions/checkout@v4
 
-      - name: Set up JDK ${{ matrix.java }}
+      - name: Set up JDK 25 for Gradle runtime
         uses: actions/setup-java@v4
         with:
           distribution: temurin
-          java-version: ${{ matrix.java }}
-
-      - name: Run tests
-        run: ./gradlew test -PcompatibilityTest=true --no-daemon
+          java-version: 25
 
       - name: Cache Gradle packages
         uses: actions/cache@v3
@@ -32,8 +29,8 @@ jobs:
           key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
           restore-keys: ${{ runner.os }}-gradle
 
-      - name: Run compatibility tests
-        run: ./gradlew test -PcompatibilityTest=true -PtargetJava=${{ matrix.java }} --no-daemon
+      - name: Run compatibility tests (target Java ${{ matrix.target-java }})
+        run: ./gradlew test -PcompatibilityTest=true -PtargetJava=${{ matrix.target-java }} --no-daemon
 
   # 2단계: SonarCloud 분석 (호환성 테스트 성공 후 실행)
   sonarcloud:
