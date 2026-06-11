@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -30,10 +31,11 @@ class FileUtilsTest {
 
     @Test
     @DisplayName("isEmpty() 메서드 테스트")
-    void test_isEmpty_method() {
+    void test_isEmpty_method() throws IOException {
         assertTrue(FileUtils.isEmpty(null));
 
-        File file = new File("");
+        File file = Files.createTempFile("file-utils-empty", ".tmp").toFile();
+        file.deleteOnExit();
         assertTrue(FileUtils.isEmpty(file));
     }
 }

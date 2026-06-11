@@ -86,6 +86,7 @@ public final class ValidUtils {
      * @param value 검증할 문자열
      * @return 유효한 날짜인지 검증 여부
      */
+    @SuppressWarnings("java:S3776")
     public static boolean isDate(@NonNull String value) {
         if (value.length() != 8 && value.length() != 10) {
             return false;

@@ -42,6 +42,7 @@ public final class CollectionUtils {
                     }
                 }
             }
+
             newValues = orderValues;
         }
 
