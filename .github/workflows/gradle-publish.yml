@@ -22,6 +22,12 @@ jobs:
     steps:
       - name: Check out code
         uses: actions/checkout@v4
+
+      - name: Print checked out commit
+        run: |
+          git branch --show-current
+          git rev-parse HEAD
+          git log -1 --oneline
         
       - name: Set up JDK 25
         uses: actions/setup-java@v4
