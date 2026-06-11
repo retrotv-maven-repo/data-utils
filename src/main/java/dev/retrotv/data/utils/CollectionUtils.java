@@ -22,6 +22,7 @@ public final class CollectionUtils {
      * List에서 중복되는 데이터를 제거하고 반환합니다.
      * orgOrder를 true로 설정할 경우 반환 List가 원본 List와 동일한 순서로 유지되며, 중복 데이터는 첫번째 값만 유지됩니다.
      *
+     * @param <T> List의 요소 타입
      * @param values 중복을 제거할 list
      * @param orgOrder 원본 데이터와의 동일한 순서 유지여부
      * @return 중복이 제거된 list
@@ -52,6 +53,7 @@ public final class CollectionUtils {
     /**
      * List에 중복된 데이터가 존재하는지 확인하고, 중복여부를 반환합니다.
      *
+     * @param <T> List의 요소 타입
      * @param values 중복을 확인할 list
      * @return 중복여부
      */

@@ -62,6 +62,7 @@ public final class PasswordUtils {
      * @param includeUpperCaseEnglish 대문자 포함여부 확인
      * @param includeNumber 숫자 포함여부 확인
      * @param includeSpecialCharacter 특수문자 포함여부 확인
+     * @return 패스워드의 문자열 포함 여부
      */
     public static boolean isInclude(
         @NonNull CharSequence password,
@@ -88,6 +89,7 @@ public final class PasswordUtils {
      * 패스워드에 대문자, 소문자, 숫자, 특수문자가 모두 존재하는지 확인합니다.
      *
      * @param password 검증할 패스워드 문자열
+     * @return 패스워드의 문자열 포함 여부
      */
     public static boolean isInclude(@NonNull CharSequence password) {
         return isInclude(password, true, true, true, true);
