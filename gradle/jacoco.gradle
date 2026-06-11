@@ -21,13 +21,13 @@ jacocoTestReport {
 
                     // 검사 제외
                     fileTree(
-                            dir: it,
-                            excludes: [
-                                    "**/config/*"
-                                    , "**/util/*"
-                                    , "**/exception/**"
-                                    , "**/enums/**"
-                            ]
+                        dir: it,
+                        excludes: [
+                              "**/config/*"
+                            , "**/util/*"
+                            , "**/exception/**"
+                            , "**/enums/**"
+                        ]
                     )
                 }
             )
