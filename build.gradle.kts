@@ -14,6 +14,15 @@ java {
     }
 }
 
+tasks.withType<Javadoc>().configureEach {
+    (options as StandardJavadocDocletOptions).apply {
+        charSet = "UTF-8" // HTML charset
+        encoding = "UTF-8" // 소스 읽기 인코딩
+        docEncoding = "UTF-8" // 출력 파일 인코딩
+        locale = "ko_KR" // 한국어 문서일 때 권장
+    }
+}
+
 group = "dev.retrotv"
 version = "0.24.2-alpha"
 
