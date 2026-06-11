@@ -37,7 +37,6 @@ tasks.withType(Javadoc).configureEach {
         charSet = 'UTF-8'      // HTML charset
         encoding = 'UTF-8'     // 소스 읽기 인코딩
         docEncoding = 'UTF-8'  // 출력 파일 인코딩
-        locale = 'ko_KR'      // 한국어 문서일 때 권장
     }
 }
 
